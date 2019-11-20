@@ -10,8 +10,9 @@
   } 
 
   //On vérifie si l'utilisateur est déjà connecté, si c'est le cas, on attribut son pseudo à la variable $pseudo
-  if(isset($_SESSION['pseudo'])) {
+  if(isset($_SESSION['pseudo']) && isset($_SESSION['id'])) {
       $pseudo = $_SESSION['pseudo'];
+      $id = $_SESSION['id'];
   } elseif (isset($_COOKIE["id"]) && isset($_COOKIE['token'])){
     $idCookie = htmlspecialchars($_COOKIE["id"]);
     $tokenCookie = htmlspecialchars($_COOKIE["token"]);
@@ -56,9 +57,9 @@
         <div>
             <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
                 if(!empty($pseudo)){ 
-                  echo '<div id="miniProfilPicture"></div>'
+                  echo '<div class="d-flex"> <a href="profil.php?id='.$id.'"><img src="imgMembres/defaultAvatar.png"></a>';
                   echo '<p>Bonjour ' . $pseudo;
-                  echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p>';
+                  echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
                 } else {
                   echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
                   echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
