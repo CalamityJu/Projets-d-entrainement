@@ -96,12 +96,12 @@
                         $sizeError = "Le fichier est vide ou trop volumineux";
                     }
                 } else {
-                    $imagePath="";
+                    $imagePath="imgMembres/defaultAvatar";
                     $thumbnailPath="";
                     $transferError = "Il y a eu un soucis lors de l'upload de l'image";
                 }
             } else {
-                $imagePath="";
+                $imagePath="imgMembres/defaultAvatar";
                 $thumbnailPath="";
             }
         } else {
