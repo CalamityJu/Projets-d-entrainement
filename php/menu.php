@@ -56,11 +56,12 @@
         <div>
             <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
                 if(!empty($pseudo)){ 
-                echo '<p>Bonjour ' . $pseudo;
-                echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p>';
+                  echo '<div id="miniProfilPicture"></div>'
+                  echo '<p>Bonjour ' . $pseudo;
+                  echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p>';
                 } else {
-                echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
-                echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
+                  echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
+                  echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
                 }
             ?>
         </div>

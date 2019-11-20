@@ -20,7 +20,6 @@ $(function() {
     $("#passwordConfirm").on("change", verifPass);
 
     //On cache le bouton
-    $("#valider").hide();
 
 });//$function
 
@@ -43,8 +42,8 @@ function verifPass() {
 
 function showButton() {
     if (mailOk && pseudoOk && passOk) {
-        $("#valider").show();
+        $("#valider").removeAttr("disabled")
     } else {
-        $("#valider").hide();
+        $("#valider").attr("disabled");
     }
 }

@@ -255,7 +255,7 @@
             </form>
         </main>
 
-        <script src="js/jquery.jss"></script>
-        <script src="js/inscription.jss"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/inscription.js"></script>
     </body>
 </html>
