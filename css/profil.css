@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* Définission des variables de couleurs */
+/*Avatar dans barre de navigation */
+nav #infosProfil a {
+  position: relative;
+}
+
+nav #infosProfil a:hover {
+  text-decoration: none;
+}
+
+nav #infosProfil a img {
+  width: 50%;
+  border-radius: 50%;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+nav #infosProfil a img.admin {
+  border: 2px solid red;
+}
+
+nav #infosProfil a img.modo {
+  border: 2px solid #1965d6;
+}
+
+/*Avatar dans le profil */
+.profil img {
+  width: 70px;
+  border-radius: 50%;
+}
+
+.profil img.admin {
+  border: 2px solid red;
+}
+
+.profil img.modo {
+  border: 2px solid #1965d6;
+}
+
+@media (min-width: 992px) {
+  .profil img {
+    width: initial;
+  }
+}
+
+.profil #pseudo {
+  font-size: 200%;
+}
+
+@media (min-width: 992px) {
+  .profil #pseudo {
+    font-size: 300%;
+  }
+}
+/*# sourceMappingURL=profil.css.map */

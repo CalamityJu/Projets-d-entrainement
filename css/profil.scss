@@ -1,0 +1,52 @@
+/* Définission des variables de couleurs */
+$admin:red;
+$modo: rgb(25, 101, 214);
+
+
+/*Avatar dans barre de navigation */
+nav {
+    #infosProfil{
+        a{
+            &:hover{
+                text-decoration: none;
+            }
+            position:relative;
+            img{
+                width: 50%;
+                border-radius: 50%;
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                &.admin {
+                    border: 2px solid $admin;
+                }
+                &.modo {
+                    border: 2px solid $modo;
+                }
+            }
+        }
+    }
+}
+
+/*Avatar dans le profil */
+.profil{
+    img {
+        width: 70px;
+        border-radius: 50%;
+        &.admin {
+            border: 2px solid $admin;
+        }
+        &.modo {
+            border: 2px solid $modo;
+        }
+        @media (min-width: 992px) {
+            width: initial;
+        }
+    }
+    #pseudo {
+        font-size: 200%;
+        @media (min-width: 992px) {
+            font-size: 300%;
+        }
+    }
+}

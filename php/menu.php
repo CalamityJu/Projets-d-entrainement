@@ -22,7 +22,7 @@
       'id' => $idCookie
     ));
     $donnees = $req->fetch();
-    $idBase = $donnees['membre_id'];
+    $id = $donnees['membre_id'];
     $tokenBase = $donnees['token_name'];
     $pseudo = $donnees['membre_pseudo'];
     $_SESSION['id'] = $idCookie;
@@ -32,6 +32,13 @@
   } else {
       $pseudo = ""; 
   } 
+
+  //On attribue le rang au joueur
+  if(isset($rang)){
+    
+  } else {
+    $rang = "visiteur";
+  }
 
 ?>
 <!DOCTYPE html>
@@ -44,6 +51,7 @@
 
     <!-- Contenu CSS -->
     <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="css/profil.css">
 
   </head>
   <body>
@@ -54,11 +62,11 @@
       <?php include("navbar.php");?> 
       -->
 
-        <div>
+        <div id="infosProfil">
             <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
                 if(!empty($pseudo)){ 
-                  echo '<div class="d-flex"> <a href="profil.php?id='.$id.'"><img src="imgMembres/defaultAvatar.png"></a>';
-                  echo '<p>Bonjour ' . $pseudo;
+                  echo '<div class="d-md-flex"> <a href="profil.php"><img class= "modo d-none d-md-block" src="imgMembres/defaultAvatar.png"></a>';
+                  echo '<p class= "align-self-center mb-0"><a class= "text-primary" href="profil.php">Bonjour ' . $pseudo . '</a>';
                   echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
                 } else {
                   echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
