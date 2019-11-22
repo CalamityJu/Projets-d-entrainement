@@ -1,6 +1,8 @@
 /* Définission des variables de couleurs */
 $admin:red;
 $modo: rgb(25, 101, 214);
+$membre : rgb(28, 146, 28);
+$visiteur: rgb(0, 0, 0);
 
 
 /*Avatar dans barre de navigation */
@@ -23,6 +25,12 @@ nav {
                 &.modo {
                     border: 2px solid $modo;
                 }
+                &.membre {
+                    border: 2px solid $membre;
+                }
+                &.visiteur {
+                    border: 2px solid $visiteur;
+                }
             }
         }
     }
@@ -39,6 +47,12 @@ nav {
         &.modo {
             border: 2px solid $modo;
         }
+        &.membre {
+            border: 2px solid $membre;
+        }
+        &.visiteur {
+            border: 2px solid $visiteur;
+        }
         @media (min-width: 992px) {
             width: initial;
         }
@@ -48,5 +62,29 @@ nav {
         @media (min-width: 992px) {
             font-size: 300%;
         }
+    }
+}
+
+
+/* Contenu du profil */
+#conteneurProfil{
+    position:relative;
+    height: 100vh;
+    #profil{
+        background-color: rgba(0, 0, 0, 0.534);
+        @media (min-width: 768px) {
+            position: absolute;
+            width: 70%;
+            border-radius: 30px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            main {
+                h3{
+                    font-size: 1.5em;
+                }
+            }
+        }
+
     }
 }

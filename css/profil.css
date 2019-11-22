@@ -26,6 +26,14 @@ nav #infosProfil a img.modo {
   border: 2px solid #1965d6;
 }
 
+nav #infosProfil a img.membre {
+  border: 2px solid #1c921c;
+}
+
+nav #infosProfil a img.visiteur {
+  border: 2px solid black;
+}
+
 /*Avatar dans le profil */
 .profil img {
   width: 70px;
@@ -38,6 +46,14 @@ nav #infosProfil a img.modo {
 
 .profil img.modo {
   border: 2px solid #1965d6;
+}
+
+.profil img.membre {
+  border: 2px solid #1c921c;
+}
+
+.profil img.visiteur {
+  border: 2px solid black;
 }
 
 @media (min-width: 992px) {
@@ -53,6 +69,31 @@ nav #infosProfil a img.modo {
 @media (min-width: 992px) {
   .profil #pseudo {
     font-size: 300%;
+  }
+}
+
+/* Contenu du profil */
+#conteneurProfil {
+  position: relative;
+  height: 100vh;
+}
+
+#conteneurProfil #profil {
+  background-color: rgba(0, 0, 0, 0.534);
+}
+
+@media (min-width: 768px) {
+  #conteneurProfil #profil {
+    position: absolute;
+    width: 70%;
+    border-radius: 30px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+  }
+  #conteneurProfil #profil main h3 {
+    font-size: 1.5em;
   }
 }
 /*# sourceMappingURL=profil.css.map */

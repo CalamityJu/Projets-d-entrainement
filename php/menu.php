@@ -55,7 +55,7 @@
 
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
       <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
 
       <!-- PAS ENCORE IMPLEMENTE -- IL FAUDRA PENSER A ENLEVER justify-content-between DANS LA NAV AU DESSUS
@@ -65,7 +65,7 @@
         <div id="infosProfil">
             <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
                 if(!empty($pseudo)){ 
-                  echo '<div class="d-md-flex"> <a href="profil.php"><img class= "modo d-none d-md-block" src="imgMembres/defaultAvatar.png"></a>';
+                  echo '<div class="d-md-flex"> <a href="profil.php"><img class= "' . $rang . ' d-none d-md-block" src="imgMembres/defaultAvatar.png"></a>';
                   echo '<p class= "align-self-center mb-0"><a class= "text-primary" href="profil.php">Bonjour ' . $pseudo . '</a>';
                   echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
                 } else {
