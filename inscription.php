@@ -12,6 +12,8 @@
 
             //On associe les entrées de l'utilisateur a des variables en échapant le code
             $pseudoAsked = htmlspecialchars($_POST['pseudo']);
+            $pseudoAsked = strtolower($pseudoAsked); // On passe le pseudo en minuscule
+            $pseudoAsked = ucfirst($pseudoAsked); // On met une majuscule à la première lettre
             $emailAsked = htmlspecialchars($_POST['email']);
             $password1 = htmlspecialchars($_POST['password']);
             $password2 = htmlspecialchars($_POST['passwordConfirm']);
