@@ -8,29 +8,24 @@ $visiteur: rgb(0, 0, 0);
 /*Avatar dans barre de navigation */
 nav {
     #infosProfil{
-        a{
-            &:hover{
-                text-decoration: none;
+        position:relative;
+        img{
+            width: 50%;
+            border-radius: 50%;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            &.admin {
+                border: 2px solid $admin;
             }
-            position:relative;
-            img{
-                width: 50%;
-                border-radius: 50%;
-                position: relative;
-                left: 50%;
-                transform: translateX(-50%);
-                &.admin {
-                    border: 2px solid $admin;
-                }
-                &.modo {
-                    border: 2px solid $modo;
-                }
-                &.membre {
-                    border: 2px solid $membre;
-                }
-                &.visiteur {
-                    border: 2px solid $visiteur;
-                }
+            &.modo {
+                border: 2px solid $modo;
+            }
+            &.membre {
+                border: 2px solid $membre;
+            }
+            &.visiteur {
+                border: 2px solid $visiteur;
             }
         }
     }

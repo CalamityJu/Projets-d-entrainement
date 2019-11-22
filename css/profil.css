@@ -1,15 +1,11 @@
 @charset "UTF-8";
 /* Définission des variables de couleurs */
 /*Avatar dans barre de navigation */
-nav #infosProfil a {
+nav #infosProfil {
   position: relative;
 }
 
-nav #infosProfil a:hover {
-  text-decoration: none;
-}
-
-nav #infosProfil a img {
+nav #infosProfil img {
   width: 50%;
   border-radius: 50%;
   position: relative;
@@ -18,19 +14,19 @@ nav #infosProfil a img {
           transform: translateX(-50%);
 }
 
-nav #infosProfil a img.admin {
+nav #infosProfil img.admin {
   border: 2px solid red;
 }
 
-nav #infosProfil a img.modo {
+nav #infosProfil img.modo {
   border: 2px solid #1965d6;
 }
 
-nav #infosProfil a img.membre {
+nav #infosProfil img.membre {
   border: 2px solid #1c921c;
 }
 
-nav #infosProfil a img.visiteur {
+nav #infosProfil img.visiteur {
   border: 2px solid black;
 }
 
