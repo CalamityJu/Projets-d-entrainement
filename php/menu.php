@@ -15,11 +15,12 @@
       $id = $_SESSION['id'];
       $signature = $_SESSION['signature'];
       $description = $_SESSION['description'];
+      $avatar = $_SESSION['avatar'];
   } elseif (isset($_COOKIE["id"]) && isset($_COOKIE['token'])){
     $idCookie = htmlspecialchars($_COOKIE["id"]);
     $tokenCookie = htmlspecialchars($_COOKIE["token"]);
     //On récupère les informations de la bdd
-    $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, token_name FROM membres WHERE membre_id = :id');
+    $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_thumbnail, token_name FROM membres WHERE membre_id = :id');
     $req->execute(array(
       'id' => $idCookie
     ));
@@ -29,10 +30,12 @@
     $pseudo = $donnees['membre_pseudo'];
     $signature = $donnees['membre_signature'];
     $description = $donnees['membre_description'];
+    $avatar = $donnees['membre_thumbnail'];
     $_SESSION['id'] = $idCookie;
     $_SESSION['pseudo'] = $pseudo;
     $_SESSION['description'] = $description;
     $_SESSION['signature'] = $signature;
+    $_SESSION['avatar'] = $avatar;
 
     $req->closeCursor();
   
@@ -72,7 +75,7 @@
         <div id="infosProfil">
             <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
                 if(!empty($pseudo)){ 
-                  echo '<div id="menuProfil" class="d-md-flex"> <a href="profil.php"><img class= "' . $rang . ' d-none d-md-block" src="imgMembres/defaultAvatar.png"></a>';
+                  echo '<div class="d-md-flex"><img id="menuProfil" class= "' . $rang . ' d-none d-md-block" src="' . $avatar . '">';
                   echo '<p class= "align-self-center mb-0">Bonjour ' . $pseudo;
                   echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
                 } else {
@@ -93,7 +96,7 @@
       <div class="jumbotron">
         <div class="d-flex justify-content-around mb-2 mb-md-5">
           <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-          <img src="imgMembres/defaultAvatar.png" class='<?php echo $rang; ?>' alt="Avatar de profil">
+          <img src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
         </div>
         <h3>Description : </h3>
         <p class="lead"><?php echo $description; ?></p>

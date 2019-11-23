@@ -10,7 +10,7 @@ $(function(){
     $("#menuProfil").on("click", apparaitreProfil);
 
     //On cache le profil
-    $("conteneurProfil").hide();
+    $("#conteneurProfil").hide();
      
 });
 
@@ -29,10 +29,17 @@ function redimensionner() {
  * Fonction qui fait apparaitre le profil
  */
 function apparaitreProfil(){
+    console.log("click");
     if (switchButton === false){
         switchButton = true;
+        $("#conteneurProfil").fadeIn(300, function(){
+            $("#conteneurProfil").show();
+        });
 
     } else {
         switchButton = false;
+        $("#conteneurProfil").fadeOut(300, function(){
+            $("#conteneurProfil").hide();
+        });
     }
 }

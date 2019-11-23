@@ -11,7 +11,7 @@
             <div class="jumbotron">
                 <div class="d-flex justify-content-around mb-2 mb-md-5">
                     <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-                    <img src="imgMembres/defaultAvatar.png" class='<?php echo $rang; ?>' alt="Avatar de profil">
+                    <img src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
                 </div>
                 <h3>Description : </h3>
                 <p class="lead"><?php echo $description; ?></p>

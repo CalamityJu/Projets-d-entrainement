@@ -10,23 +10,9 @@ nav {
     #infosProfil{
         position:relative;
         img{
-            width: 50%;
+            width: 60px;
             border-radius: 50%;
             position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-            &.admin {
-                border: 2px solid $admin;
-            }
-            &.modo {
-                border: 2px solid $modo;
-            }
-            &.membre {
-                border: 2px solid $membre;
-            }
-            &.visiteur {
-                border: 2px solid $visiteur;
-            }
         }
     }
 }
@@ -34,7 +20,7 @@ nav {
 /*Avatar dans le profil */
 .profil{
     img {
-        width: 70px;
+        width: 80px;
         border-radius: 50%;
         &.admin {
             border: 2px solid $admin;
