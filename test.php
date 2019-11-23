@@ -128,3 +128,17 @@
   }         
 ?>
 
+
+<!-- Pour modifier le profil
+
+Quand on clique sur le bouton, ça transforme les champs texte en champs éditable.
+Puis on récupère les informations rentrés dans les champs.
+Ensuite on envoie ça à un script en php (modificationProfil.php).
+
+Dans JS pour envoyer à php une variable
+ $.post("script.php", {"ma_variable" : "contenu"});
+
+ Dans PHP pour récupérer les données envoyées par JS
+ echo $_POST["ma_variable"]; ==> cela affichera le contenu
+
+-->
