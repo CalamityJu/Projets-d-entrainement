@@ -7,7 +7,8 @@ $(function(){
 
     //EventListeners
     $(window).on("resize", redimensionner);
-    $("#menuProfil").on("click", apparaitreProfil);
+    $(".menuProfil").on("click", apparaitreProfil);
+    $("#quitterProfil").on("click", apparaitreProfil);
 
     //On cache le profil
     $("#conteneurProfil").hide();
@@ -19,7 +20,9 @@ $(function(){
  */
 function redimensionner() { 
     if ($(window).height() <=768){
-        $("#conteneurProfil").css("margin-top", tailleNavBar);
+        $("#conteneurProfil").css({
+            marginTop: "tailleNavBar"
+        });
     } else {
         $("#conteneurProfil").css("margin-top", "unset");
     }
@@ -32,13 +35,13 @@ function apparaitreProfil(){
     console.log("click");
     if (switchButton === false){
         switchButton = true;
-        $("#conteneurProfil").fadeIn(300, function(){
+        $("#conteneurProfil").fadeIn(100, function(){
             $("#conteneurProfil").show();
         });
 
     } else {
         switchButton = false;
-        $("#conteneurProfil").fadeOut(300, function(){
+        $("#conteneurProfil").fadeOut(100, function(){
             $("#conteneurProfil").hide();
         });
     }

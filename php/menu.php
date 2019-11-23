@@ -72,25 +72,40 @@
       <?php include("navbar.php");?> 
       -->
 
-        <div id="infosProfil">
-            <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
-                if(!empty($pseudo)){ 
-                  echo '<div class="d-md-flex"><img id="menuProfil" class= "' . $rang . ' d-none d-md-block" src="' . $avatar . '">';
-                  echo '<p class= "align-self-center mb-0">Bonjour ' . $pseudo;
-                  echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
-                } else {
-                  echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
-                  echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
-                }
-            ?>
-        </div>
+      <div id="infosProfil">
+          <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
+              if(!empty($pseudo)){ 
+                echo '<div class="d-md-flex"><img class= "' . $rang . ' d-none d-md-block menuProfil" src="' . $avatar . '">';
+                echo '<p class= "align-self-center mb-0 menuProfil">Bonjour ' . $pseudo;
+                echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
+              } else {
+                echo '<p> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
+                echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
+              }
+          ?>
       </div>
-    </nav>
+    </div>
+  </nav>
 
+
+  
+<!-- PROFIL : 
+    - caché à la base
+    - apparait lorsque l'on clique sur son avatar
+    - possibilité de le modifier en appuyant sur un bouton
+-->
+
+<?php 
+  if (isset($_SESSION['id'])){
+    echo  ''
+?>
 <div id="conteneurProfil" class="container-fluid">
   <div id="profil"> 
-
-    <h1 class="text-center py-5">Mon profil</h1>
+    <img id="quitterProfil" src="img/quitterProfil.png" alt="Icône pour quitter le profil">
+    <h1 class="text-center py-5">
+      Mon profil
+      <img id="modifierProfil" src="img/modifierProfil.png" alt="Icône pour modifier le profil">
+    </h1>
 
     <main class="mx-2 pb-2 mx-md-5">
       <div class="jumbotron">
@@ -107,5 +122,8 @@
     </main>
   </div>
 </div>
-
+<?php 
+  '';
+  }         
+?>
 

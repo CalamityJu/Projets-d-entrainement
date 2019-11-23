@@ -50,8 +50,9 @@ nav {
 /* Contenu du profil */
 #conteneurProfil{
     position:relative;
-    height: 100vh;
-    #profil{
+    height: 88vh;
+    #profil{    
+        position: relative;
         background-color: rgba(0, 0, 0, 0.534);
         @media (min-width: 768px) {
             position: absolute;
@@ -63,9 +64,23 @@ nav {
             main {
                 h3{
                     font-size: 1.5em;
-                }
-            }
+                }//h3
+            }//main
         }
-
-    }
-}
+        h1{
+            //Icônes du profil
+            #modifierProfil{
+                position: relative;
+                left: 3%;
+                width: 40px;
+            }//#modifierProfil
+        }//h1
+        #quitterProfil {
+            position: absolute;
+            right: 7px;
+            top: 7px;
+            border-radius: 30px;
+            width: 40px;
+        }
+    } //#profil
+}//#conteneurProfil
