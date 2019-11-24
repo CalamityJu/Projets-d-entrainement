@@ -51,8 +51,8 @@ nav #infosProfil img {
 
 /* Contenu du profil */
 #conteneurProfil {
-  position: relative;
-  height: 88vh;
+  position: absolute;
+  height: 80vh;
 }
 
 #conteneurProfil #profil {

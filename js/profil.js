@@ -67,11 +67,15 @@ function modifierProfil(){
         padding: "2px"
     });
     $("#conteneurProfil .jumbotron").append('<button id="modificationProfilButton" type="buton" class="btn btn-primary mx-auto">Enregistrer les modifications</button>');
+    $("#conteneurProfil #avatar").on("click", uploadNewImage);
     $("#modificationProfilButton").on("click", changeProfil);
     
     //Lorsque l'on clique sur le bouton
 }
 
+/**
+ * Fonction qui envoie les inforamtions de profil modifiée à la page PHP
+ */
 function changeProfil(){
     let description = $("#description").text(),
         signature = $("#signature").text();
@@ -92,20 +96,23 @@ function changeProfil(){
             console.log(erreur);
         }
     });
+
+    $("#conteneurProfil #description").attr('contenteditable', 'false').css({
+        border : "unset",
+        padding: "0"
+    });
+
+    $("#conteneurProfil #signature").attr('contenteditable', 'false').css({
+        border : "unset",
+        padding: "0"
+    });
+
+    $("#conteneurProfil #avatar").attr('contenteditable', 'false').css({
+        border : "unset",
+        padding: "0"
+    });
 }
 
-
-
-/* Pour modifier le profil
-
-Quand on clique sur le bouton, ça transforme les champs texte en champs éditable.
-Puis on récupère les informations rentrés dans les champs.
-Ensuite on envoie ça à un script en php (modificationProfil.php).
-
-Dans JS pour envoyer à php une variable
- $.post("script.php", {"ma_variable" : "contenu"});
-
- Dans PHP pour récupérer les données envoyées par JS
- echo $_POST["ma_variable"]; ==> cela affichera le contenu
-
-*/
+function uploadNewImage(){
+    
+}

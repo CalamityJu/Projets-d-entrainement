@@ -127,3 +127,20 @@
   }         
 ?>
 
+<!-- UPLOAD NEW AVATAR : 
+    - caché à la base
+    - apparait lorsque l'on clique pour modifier l'avatar
+    - permet d'upload un nouvel avatar en supprimant l'ancien et le remplaçant dans la BDD
+-->
+
+<div id="newAvatar">
+  <form action="php/modificationProfil.php" method="post">
+  <div class="form-group">
+    <label for="nvllePhoto">Photo de profil</label>
+    <input type="file" class="form-control-file" id="nvllePhoto" aria-describedby="fileHelp" name="nvllePhoto">
+    <small id="fileHelp" class="form-text text-muted"><p class="text-warning m-0">Vous pouvez selectionner un nouvel avatar. ATTENTION : l'ancien sera supprimé.</p> <p>Il ne doit pas faire plus de 30000 octets (30 KO). Seul les JPG, GIF et PNG sont autorisés.</p></small>
+    <button type="submit" class="btn btn-primary mx-auto" id="valider">Changer d'avatar</button>
+  </div>
+  </form>
+</div>
+
