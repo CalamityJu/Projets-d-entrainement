@@ -1,6 +1,6 @@
 //On initialise les variables globales
 let tailleNavBar = $("#navbar").height(),
-    switchButton = false;
+    switchProfil = false;
 
 //On attends que le DOM soit chargé
 $(function(){
@@ -9,14 +9,15 @@ $(function(){
     $(window).on("resize", redimensionner);
     $(".menuProfil").on("click", apparaitreProfil);
     $("#quitterProfil").on("click", apparaitreProfil);
+    $("#modifierProfil").on("click", modifierProfil);
 
-    //On cache le profil
+    //On cache le profil par défaut
     $("#conteneurProfil").hide();
      
-});
+});//$function
 
 /**
- * Fonction qui ajoute une marge au conteneur du profil si la hauteur de l'écran est sous 768px
+ * Fonction qui ajoute une marge haute au conteneur du profil si la hauteur de l'écran est sous 768px
  */
 function redimensionner() { 
     if ($(window).height() <=768){
@@ -33,16 +34,78 @@ function redimensionner() {
  */
 function apparaitreProfil(){
     console.log("click");
-    if (switchButton === false){
-        switchButton = true;
+    if (switchProfil === false){
+        switchProfil = true;
         $("#conteneurProfil").fadeIn(100, function(){
             $("#conteneurProfil").show();
         });
 
     } else {
-        switchButton = false;
+        switchProfil = false;
         $("#conteneurProfil").fadeOut(100, function(){
             $("#conteneurProfil").hide();
         });
     }
 }
+
+/**
+ * Fonction qui permet de modifier les informations du profil
+ */
+function modifierProfil(){
+    $("#conteneurProfil #description").attr('contenteditable', 'true').css({
+        border : "2px dotted grey",
+        padding: "2px"
+    });
+    
+    $("#conteneurProfil #signature").attr('contenteditable', 'true').css({
+        border : "2px dotted grey",
+        padding: "2px"
+    });
+
+    $("#conteneurProfil #avatar").attr('contenteditable', 'true').css({
+        border : "2px dotted grey",
+        padding: "2px"
+    });
+    $("#conteneurProfil .jumbotron").append('<button id="modificationProfilButton" type="buton" class="btn btn-primary mx-auto">Enregistrer les modifications</button>');
+    $("#modificationProfilButton").on("click", changeProfil);
+    
+    //Lorsque l'on clique sur le bouton
+}
+
+function changeProfil(){
+    let description = $("#description").text(),
+        signature = $("#signature").text();
+
+    $.ajax({
+        url: "php/modificationProfil.php",
+        type: "post",
+        data: "description="+description+"&signature="+signature,
+        dataType: "html",
+        success : function(code_html, statut){
+            console.log("Requête envoyé avec succès");
+            console.log('Code html -> '+code_html);
+        },
+        error : function(resultat, statut, erreur){
+            console.log("La requête n'a pas aboutie...");
+            console.log(resultat);
+            console.log(statut);
+            console.log(erreur);
+        }
+    });
+}
+
+
+
+/* Pour modifier le profil
+
+Quand on clique sur le bouton, ça transforme les champs texte en champs éditable.
+Puis on récupère les informations rentrés dans les champs.
+Ensuite on envoie ça à un script en php (modificationProfil.php).
+
+Dans JS pour envoyer à php une variable
+ $.post("script.php", {"ma_variable" : "contenu"});
+
+ Dans PHP pour récupérer les données envoyées par JS
+ echo $_POST["ma_variable"]; ==> cela affichera le contenu
+
+*/

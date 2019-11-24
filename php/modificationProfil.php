@@ -1,23 +1,34 @@
-<div id="conteneurProfil" class="container-fluid">
-  <div id="profil"> 
-    <img id="quitterProfil" src="img/quitterProfil.png" alt="Icône pour quitter le profil">
-    <h1 class="text-center py-5">
-      Mon profil
-      <a href="modificationProfil"><img id="modifierProfil" src="img/modifierProfil.png" alt="Icône pour modifier le profil"></a>
-    </h1>
+<?php
+  // On démarre la session
+  session_start();
 
-    <main class="mx-2 pb-2 mx-md-5">
-      <div class="jumbotron">
-        <div class="d-flex justify-content-around mb-2 mb-md-5">
-          <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-          <img src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
-        </div>
-        <h3>Description : </h3>
-        <p class="lead"><?php echo $description; ?></p>
-        <hr class="my-4">
-        <h3>Signature : </h3>
-        <p><?php echo $signature; ?></p>
-      </div>
-    </main>
-  </div>
-</div>
+  $id= $_SESSION['id'];
+
+  // On se connecte à la bdd
+  try {
+    $bdd= new PDO('mysql:host=localhost; dbname=espacemembre; charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  } catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+  } 
+
+  if(isset($_POST['description'])) {
+    $description = htmlspecialchars($_POST['description']);
+    $_SESSION['description'] = $description;
+  }
+  if(isset($_POST['signature'])) {
+    $signature = htmlspecialchars($_POST['signature']);
+    $_SESSION['signature'] = $signature;
+  }
+
+  if(isset($description) || isset($signature)){
+    $req = $bdd->prepare("UPDATE membres SET membre_description = :nvlle_description, membre_signature = :nvlle_signature WHERE membre_id = :id");
+    $req->execute(array(
+      'nvlle_description' => $description,
+      'nvlle_signature' => $signature,
+      'id' => $id
+    ));
+    $req->closeCursor();
+    echo "C'est bon";
+  }
+
+?>

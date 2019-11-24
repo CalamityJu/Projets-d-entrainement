@@ -111,13 +111,13 @@
       <div class="jumbotron">
         <div class="d-flex justify-content-around mb-2 mb-md-5">
           <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-          <img src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
+          <img id="avatar" src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
         </div>
         <h3>Description : </h3>
-        <p class="lead"><?php echo $description; ?></p>
+        <p id="description" class="lead"><?php echo $description; ?></p>
         <hr class="my-4">
         <h3>Signature : </h3>
-        <p><?php echo $signature; ?></p>
+        <p id="signature"><?php echo $signature; ?></p>
       </div>
     </main>
   </div>

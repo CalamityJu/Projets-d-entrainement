@@ -115,7 +115,7 @@
           <img src='<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
         </div>
         <h3>Description : </h3>
-        <p class="lead"><?php echo $description; ?></p>
+        <p class="lead" contenteditable="true"><?php echo $description; ?></p>
         <hr class="my-4">
         <h3>Signature : </h3>
         <p><?php echo $signature; ?></p>
