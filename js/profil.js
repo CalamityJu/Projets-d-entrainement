@@ -97,6 +97,15 @@ function changeProfil(){
         }
     });
 
+    //Méthode avec le $.post
+
+    // $.post("php/modificationProfil.php",{
+    //     "description" : description,
+    //     "signature" : signature
+    // }).fail(function(erreur){
+    //     console.log(erreur);
+    // });
+
     $("#conteneurProfil #description").attr('contenteditable', 'false').css({
         border : "unset",
         padding: "0"
