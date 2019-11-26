@@ -10,7 +10,6 @@ $(function(){
     $(".menuProfil").on("click", apparaitreProfil);
     $("#quitterProfil").on("click", apparaitreProfil);
     $("#modifierProfil").on("click", modifierProfil);
-    $("#newAvatar").on("click",supprimerAvatar);
      
 });//$function
 
@@ -119,9 +118,4 @@ function changeProfil(){
     });
 
     $("#modificationProfilButton").remove();
-}
-
-
-function supprimerAvatar() {
-
 }

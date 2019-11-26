@@ -75,7 +75,7 @@
       <div id="infosProfil">
           <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
               if(!empty($pseudo)){ 
-                echo '<div class="d-md-flex"><img class= "pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="imgMembres/' . $avatar . '">';
+                echo '<div class="d-md-flex"><img class= "pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '">';
                 echo '<p class= "align-self-center mb-0 menuProfil">Bonjour ' . $pseudo;
                 echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
               } else {
@@ -148,6 +148,7 @@
             <input type="file" class="form-control-file" id="nvllePhoto" aria-describedby="fileHelp" name="nvllePhoto">
             <small id="fileHelp" class="form-text text-muted"><p class="text-warning m-0">Vous pouvez selectionner un nouvel avatar. ATTENTION : l'ancien sera supprimé.</p> <p>Il ne doit pas faire plus de 30000 octets (30 KO). Seul les JPG, GIF et PNG sont autorisés.</p></small>
           </div>
+          <input id="oldAvatar" name="oldAvatar" type="hidden" value='<?php echo $avatar; ?>'>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

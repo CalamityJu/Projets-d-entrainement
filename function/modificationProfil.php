@@ -111,9 +111,14 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                         }
                         // $fileUploaded = "Le fichier a bien été enregistré";
                         imagedestroy($thumb);
-                        if (isset($_POST['avatar'])){
-                            $oldAvatar = $_POST['avatar'];
-                            unLink($oldAvatar) or die("Couldn't delete file");
+                        if (isset($_POST['oldAvatar'])){
+                            $oldAvatar = $_POST['oldAvatar'];
+                            if($oldAvatar !== "defaultAvatar.png"){
+                                unLink("../imgMembres/". $oldAvatar) or die("Couldn't delete file");
+                                unLink("../imgMembres/thumbnail-". $oldAvatar) or die("Couldn't delete file");
+                                echo 'avatar = defaultAvatar';
+                            }
+                            echo "ça marche pas";
                         }
                     }
                 }
