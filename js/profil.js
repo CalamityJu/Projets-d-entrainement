@@ -10,6 +10,7 @@ $(function(){
     $(".menuProfil").on("click", apparaitreProfil);
     $("#quitterProfil").on("click", apparaitreProfil);
     $("#modifierProfil").on("click", modifierProfil);
+    $("#newAvatar").on("click",supprimerAvatar);
      
 });//$function
 
@@ -61,13 +62,12 @@ function modifierProfil(){
 
     $("#conteneurProfil #avatar").attr('contenteditable', 'true').attr('data-toggle', 'modal').attr('data-target','#exampleModalCenter').css({
         border : "2px dotted grey",
+        borderRadius: "50%",
         padding: "2px"
     });
     $("#conteneurProfil .jumbotron").append('<button id="modificationProfilButton" type="buton" class="btn btn-primary mx-auto">Enregistrer les modifications</button>');
-    $("#conteneurProfil #avatar").on("click", uploadNewImage);
     $("#modificationProfilButton").on("click", changeProfil);
-    
-    //Lorsque l'on clique sur le bouton
+
 }
 
 /**
@@ -78,7 +78,7 @@ function changeProfil(){
         signature = $("#signature").text();
 
     $.ajax({
-        url: "php/modificationProfil.php",
+        url: "function/modificationProfil.php",
         type: "post",
         data: "description="+description+"&signature="+signature,
         dataType: "html",
@@ -96,7 +96,7 @@ function changeProfil(){
 
     //Méthode avec le $.post
 
-    // $.post("php/modificationProfil.php",{
+    // $.post("function/modificationProfil.php",{
     //     "description" : description,
     //     "signature" : signature
     // }).fail(function(erreur){
@@ -113,7 +113,7 @@ function changeProfil(){
         padding: "0"
     });
 
-    $("#conteneurProfil #avatar").attr('contenteditable', 'false').css({
+    $("#conteneurProfil #avatar").css({
         border : "unset",
         padding: "0"
     });
@@ -121,6 +121,7 @@ function changeProfil(){
     $("#modificationProfilButton").remove();
 }
 
-function uploadNewImage(){
-    
+
+function supprimerAvatar() {
+
 }

@@ -48,10 +48,11 @@
                                 if (!move_uploaded_file($actualName, $imagePath)){
                                     echo "Probleme";
                                 }else{
+                                    //On crée le nom qu'on insérera dans la bdd 
+                                    $nameImageBdd = $newName.'.'.$extension;
 
                                     //On redimensionne l'image pour en créer un thumbnail et on l'insère dans le dossier imgMembres
-                                    //$imagePath
-                                    $thumbnailPath = $path.'/thumbnail-'.$newName.'.'.$extension;
+                                    $thumbnailPath = $path.'/thumbnail-'.$nameImageBdd;
 
                                     switch($extension) {
                                         case "jpg":
@@ -104,24 +105,27 @@
                             }
                         } else {
                             $extensionError = "Le fichier n'est pas dans un format accepté";
+                            echo $extensionError;
                         }
                     } else {
                         $sizeError = "Le fichier est vide ou trop volumineux";
+                        echo $sizeError;
                     }
                 } else {
-                    $imagePath="imgMembres/defaultAvatar.png";
-                    $thumbnailPath="imgMembres/defaultAvatar.png";
+                    $nameImageBdd="defaultAvatar.png";
                     $transferError = "Il y a eu un soucis lors de l'upload de l'image";
+                    echo $transferError;
                 }
             } else {
-                $imagePath="imgMembres/defaultAvatar.png";
-                $thumbnailPath="imgMembres/defaultAvatar.png";
+                $nameImageBdd= "defaultAvatar.png";
+                echo "ici";
             }
         } else {
             $missingInformations = "Il manque des informations";
+            echo $missingInformations;
         }
 
-        if (isset($pseudoAsked) && isset($emailAsked) && isset($password1) && isset($password2) && isset($description) && isset($imagePath) && isset($thumbnailPath) && isset($signature) && empty($_POST['hidden'])) {
+        if (isset($pseudoAsked) && isset($emailAsked) && isset($password1) && isset($password2) && isset($description) && isset($nameImageBdd) && isset($signature) && empty($_POST['hidden'])) {
             //On vérifie que les informations sont valide (pseudo disponible, mots de passe identique)
             $req = $bdd->prepare('SELECT membre_pseudo, membre_email FROM membres WHERE membre_pseudo = :pseudo OR membre_email = :email');
             $req->execute(array(
@@ -141,14 +145,13 @@
             } else {
                 $passwordHash = password_hash($password1, PASSWORD_DEFAULT);
                 //On insère les informations dans la base de donnée
-                $req = $bdd->prepare('INSERT INTO membres(membre_pseudo, membre_email, membre_mdp, membre_description, membre_photo, membre_thumbnail, membre_signature, date_inscription) VALUES(:pseudo, :email, :pass, :descrip, :photo, :thumbnail, :signat, NOW())');
+                $req = $bdd->prepare('INSERT INTO membres(membre_pseudo, membre_email, membre_mdp, membre_description, membre_photo, membre_signature, date_inscription) VALUES(:pseudo, :email, :pass, :descrip, :photo, :signat, NOW())');
                 $req->execute(array(
                     'pseudo'=>$pseudoAsked,
                     'email'=>$emailAsked,
                     'pass'=>$passwordHash,
                     'descrip'=>$description,
-                    'photo'=>$imagePath,
-                    'thumbnail'=>$thumbnailPath,
+                    'photo'=>$nameImageBdd,
                     'signat'=>$signature
                 ));
                 $req->closeCursor();

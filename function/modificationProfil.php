@@ -57,6 +57,8 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                     if (!move_uploaded_file($actualName, "../" . $imagePath)){
                         echo "Probleme";
                     }else{
+                        //On crée le nom qu'on insérera dans la bdd 
+                        $nameImageBdd = $newName.'.'.$extension;
 
                         //On redimensionne l'image pour en créer un thumbnail et on l'insère dans le dossier imgMembres
                         //$imagePath
@@ -109,6 +111,10 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                         }
                         // $fileUploaded = "Le fichier a bien été enregistré";
                         imagedestroy($thumb);
+                        if (isset($_POST['avatar'])){
+                            $oldAvatar = $_POST['avatar'];
+                            unLink($oldAvatar) or die("Couldn't delete file");
+                        }
                     }
                 }
             } else {
@@ -128,14 +134,13 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
 
 
 if(isset($thumbnailPath) && isset($imagePath)) {
-    $req = $bdd->prepare('UPDATE membres SET membre_photo = :nvlle_photo, membre_thumbnail = :nv_thumbnail WHERE membre_id = :id');
+    $req = $bdd->prepare('UPDATE membres SET membre_photo = :nvlle_photo WHERE membre_id = :id');
     $req->execute(array(
-      'nvlle_photo' => $imagePath,
-      'nv_thumbnail' => $thumbnailPath,
+      'nvlle_photo' => $nameImageBdd,
       'id' => $id
     ));
     $req->closeCursor();
-    $_SESSION['avatar'] = $thumbnailPath;
+    $_SESSION['avatar'] = $nameImageBdd;
     header('Location: ../index.php');
 }
 
