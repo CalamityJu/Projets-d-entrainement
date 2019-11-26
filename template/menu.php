@@ -65,7 +65,7 @@
 
   </head>
   <body>
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+    <nav id="navbar" class="fixed-top navbar navbar-expand-lg navbar-light bg-light justify-content-between">
       <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
 
       <!-- PAS ENCORE IMPLEMENTE -- IL FAUDRA PENSER A ENLEVER justify-content-between DANS LA NAV AU DESSUS
