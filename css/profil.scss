@@ -10,7 +10,7 @@ nav {
     #infosProfil{
         position:relative;
         img{
-            width: 60px;
+            width: 50px;
             border-radius: 50%;
             position: relative;
         }
@@ -20,7 +20,7 @@ nav {
 /*Avatar dans le profil */
 .profil{
     img {
-        width: 80px;
+        width: 90px;
         border-radius: 50%;
         &.admin {
             border: 2px solid $admin;
@@ -51,6 +51,7 @@ nav {
 #conteneurProfil{
     position:absolute;
     height: 80vh;
+    display:none;
     #profil{    
         position: relative;
         background-color: rgba(0, 0, 0, 0.534);

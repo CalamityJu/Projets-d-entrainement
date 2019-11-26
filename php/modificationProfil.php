@@ -34,15 +34,14 @@
 
   //Si changement de photo de profil
 
-  if (isset($_FILES['nvlle_photo']) && !empty($_FILES['nvlle_photo']['tmp_name'])) {
-    if ($_FILES['nvlle_photo']['error'] == 0){ 
-        $file = $_FILES['nvlle_photo'];
+if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
+    if ($_FILES['nvllePhoto']['error'] == 0){ 
+        $file = $_FILES['nvllePhoto'];
         $actualName = $file['tmp_name'];
         $newName = bin2hex(random_bytes(32)); //On attribue un hash généré aléatoirement comme nouveau nom
         $path = "imgMembres"; // On attribut le chemin où seront stockées les photos
-
-        // Le fichier ne doit pas faire plus de 30000 octets (30 KO)
-        if ($file['size'] <= 30000 AND $file['size'] !== 0) { 
+        // Le fichier ne doit pas faire plus de 100000 octets (100 KO)
+        if ($file['size'] <= 100000 AND $file['size'] !== 0) { 
             $infosFichier = pathinfo($file['name']);
             $extension = $infosFichier['extension'];
             $legalExtensions = array("jpg", "png", "gif", "jpeg");
@@ -52,11 +51,10 @@
                 $imagePath = $path.'/'.$newName.'.'.$extension;
                 //On vérifie que le nom du fichier n'existe pas
                 if (file_exists($imagePath)) {
-                    $fileAlreadyExists = "Un fichier portant ce nom existe déjà. Merci de choisir un autre nom pour votre fichier";
-                    echo $fileAlreadyExists;
+                    $message = "Un fichier portant ce nom existe déjà. Merci de choisir un autre nom pour votre fichier";
                 } else {
                     // Si tout se passe bien, on déplace le fichier dans le dossier des images des membres
-                    if (!move_uploaded_file($actualName, $imagePath)){
+                    if (!move_uploaded_file($actualName, "../" . $imagePath)){
                         echo "Probleme";
                     }else{
 
@@ -65,7 +63,7 @@
                         $thumbnailPath = $path.'/thumbnail-'.$newName.'.'.$extension;
                         $newWidth = 100;
 
-                        $size = getimagesize($imagePath);
+                        $size = getimagesize("../" .$imagePath);
                         $width = $size[0];
                         $height = $size[0];
                         $newHeight = intval($newWidth*$height/$width);
@@ -73,13 +71,13 @@
                         switch($extension) {
                             case "jpg":
                             case "jpeg":
-                                $resize = imagecreatefromjpeg($imagePath);
+                                $resize = imagecreatefromjpeg("../" .$imagePath);
                                 break;
                             case "png":
-                                $resize = imagecreatefrompng($imagePath);
+                                $resize = imagecreatefrompng("../" .$imagePath);
                                 break;
                             case "gif": 
-                                $resize = imagecreatefromgif($imagePath);
+                                $resize = imagecreatefromgif("../" .$imagePath);
                                 break;
                         }
                         $thumb = imagecreatetruecolor($newWidth, $newHeight);
@@ -90,33 +88,44 @@
                         switch($extension) {
                             case "jpg":
                             case "jpeg":
-                                imagejpeg($thumb, $thumbnailPath, 85);
+                                imagejpeg($thumb, "../" .$thumbnailPath, 85);
                                 break;
                             case "png":
-                                imagepng($thumb, $thumbnailPath, 0);
+                                imagepng($thumb, "../" .$thumbnailPath, 0);
                                 break;
                             case "gif": 
-                                imagegif($thumb, $thumbnailPath, 85);
+                                imagegif($thumb, "../" .$thumbnailPath, 85);
                                 break;
                         }
                         // $fileUploaded = "Le fichier a bien été enregistré";
                     }
                 }
             } else {
-                $extensionError = "Le fichier n'est pas dans un format accepté";
+                $message = "Le fichier n'est pas dans un format accepté";
             }
         } else {
-            $sizeError = "Le fichier est vide ou trop volumineux";
+            $message = "Le fichier est vide ou trop volumineux";
+            
         }
     } else {
-        $imagePath="imgMembres/defaultAvatar";
-        $thumbnailPath="";
-        $transferError = "Il y a eu un soucis lors de l'upload de l'image";
+        $message = "Il y a eu un soucis lors de l'upload de l'image";
     }
-} else {
-    $imagePath="imgMembres/defaultAvatar";
-    $thumbnailPath="";
+    echo $message;
 }
 
+
+
+
+if(isset($thumbnailPath) && isset($imagePath)) {
+    $req = $bdd->prepare('UPDATE membres SET membre_photo = :nvlle_photo, membre_thumbnail = :nv_thumbnail WHERE membre_id = :id');
+    $req->execute(array(
+      'nvlle_photo' => $imagePath,
+      'nv_thumbnail' => $thumbnailPath,
+      'id' => $id
+    ));
+    $req->closeCursor();
+    $_SESSION['avatar'] = $thumbnailPath;
+    header('Location: ../index.php');
+}
 
 ?>

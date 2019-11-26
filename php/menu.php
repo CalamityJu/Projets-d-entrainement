@@ -10,7 +10,7 @@
   } 
 
   //On vérifie si l'utilisateur est déjà connecté, si c'est le cas, on attribut son pseudo à la variable $pseudo
-  if(isset($_SESSION['pseudo']) && isset($_SESSION['id']) && isset($_SESSION['signature']) && isset($_SESSION['description'])) {
+  if(isset($_SESSION['pseudo']) && isset($_SESSION['id']) && isset($_SESSION['signature']) && isset($_SESSION['description'])&& isset($_SESSION['avatar'])) {
       $pseudo = $_SESSION['pseudo'];
       $id = $_SESSION['id'];
       $signature = $_SESSION['signature'];
@@ -49,7 +49,7 @@
   } else {
     $rang = "visiteur";
   }
-
+  
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -75,7 +75,7 @@
       <div id="infosProfil">
           <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
               if(!empty($pseudo)){ 
-                echo '<div class="d-md-flex"><img class= "' . $rang . ' d-none d-md-block menuProfil" src="' . $avatar . '">';
+                echo '<div class="d-md-flex"><img class= "pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="' . $avatar . '">';
                 echo '<p class= "align-self-center mb-0 menuProfil">Bonjour ' . $pseudo;
                 echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
               } else {
@@ -133,14 +133,28 @@
     - permet d'upload un nouvel avatar en supprimant l'ancien et le remplaçant dans la BDD
 -->
 
-<div id="newAvatar">
-  <form action="php/modificationProfil.php" method="post">
-  <div class="form-group">
-    <label for="nvllePhoto">Photo de profil</label>
-    <input type="file" class="form-control-file" id="nvllePhoto" aria-describedby="fileHelp" name="nvllePhoto">
-    <small id="fileHelp" class="form-text text-muted"><p class="text-warning m-0">Vous pouvez selectionner un nouvel avatar. ATTENTION : l'ancien sera supprimé.</p> <p>Il ne doit pas faire plus de 30000 octets (30 KO). Seul les JPG, GIF et PNG sont autorisés.</p></small>
-    <button type="submit" class="btn btn-primary mx-auto" id="valider">Changer d'avatar</button>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Changer d'avatar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="php/modificationProfil.php" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="file" class="form-control-file" id="nvllePhoto" aria-describedby="fileHelp" name="nvllePhoto">
+            <small id="fileHelp" class="form-text text-muted"><p class="text-warning m-0">Vous pouvez selectionner un nouvel avatar. ATTENTION : l'ancien sera supprimé.</p> <p>Il ne doit pas faire plus de 30000 octets (30 KO). Seul les JPG, GIF et PNG sont autorisés.</p></small>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <button type="submit" class="btn btn-primary" id="valider">Sauvegarder les changements</button>
+        </div>
+      </form>
+    </div>
   </div>
-  </form>
 </div>
 

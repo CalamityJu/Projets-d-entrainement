@@ -10,9 +10,6 @@ $(function(){
     $(".menuProfil").on("click", apparaitreProfil);
     $("#quitterProfil").on("click", apparaitreProfil);
     $("#modifierProfil").on("click", modifierProfil);
-
-    //On cache le profil par défaut
-    $("#conteneurProfil").hide();
      
 });//$function
 
@@ -62,7 +59,7 @@ function modifierProfil(){
         padding: "2px"
     });
 
-    $("#conteneurProfil #avatar").attr('contenteditable', 'true').css({
+    $("#conteneurProfil #avatar").attr('contenteditable', 'true').attr('data-toggle', 'modal').attr('data-target','#exampleModalCenter').css({
         border : "2px dotted grey",
         padding: "2px"
     });
@@ -120,6 +117,8 @@ function changeProfil(){
         border : "unset",
         padding: "0"
     });
+
+    $("#modificationProfilButton").remove();
 }
 
 function uploadNewImage(){
