@@ -30,8 +30,8 @@
                     $newName = bin2hex(random_bytes(32)); //On attribue un hash généré aléatoirement comme nouveau nom
                     $path = "imgMembres"; // On attribut le chemin où seront stockées les photos
 
-                    // Le fichier ne doit pas faire plus de 30000 octets (30 KO)
-                    if ($file['size'] <= 30000 AND $file['size'] !== 0) { 
+                    // Le fichier ne doit pas faire plus de 100000 octets (30 KO)
+                    if ($file['size'] <= 100000 AND $file['size'] !== 0) { 
                         $infosFichier = pathinfo($file['name']);
                         $extension = $infosFichier['extension'];
                         $legalExtensions = array("jpg", "png", "gif", "jpeg");
@@ -52,12 +52,6 @@
                                     //On redimensionne l'image pour en créer un thumbnail et on l'insère dans le dossier imgMembres
                                     //$imagePath
                                     $thumbnailPath = $path.'/thumbnail-'.$newName.'.'.$extension;
-                                    $newWidth = 100;
-
-                                    $size = getimagesize($imagePath);
-                                    $width = $size[0];
-                                    $height = $size[0];
-                                    $newHeight = intval($newWidth*$height/$width);
 
                                     switch($extension) {
                                         case "jpg":
@@ -71,24 +65,41 @@
                                             $resize = imagecreatefromgif($imagePath);
                                             break;
                                     }
-                                    $thumb = imagecreatetruecolor($newWidth, $newHeight);
+
+                                    list($w, $h) = getimagesize($imagePath);
+                                    if($w > $h) {
+                                        $newHeight = 100;
+                                        $newWidth = floor($w * ($newHeight / $h));
+                                        $crop_x = ceil(($w-$h)/2);
+                                        $crop_y = 0;
+                                    } else {
+                                        $newWidth = 100;
+                                        $newHeight = floor($h * ($newWidth/ $w));
+                                        $crop_x = 0;
+                                        $crop_y = ceil(($h - $w)/2);
+                                    }
+
+
+                                    $thumb = imagecreatetruecolor(100, 100);
                                     imagealphablending($thumb, false); 
                                     imagesavealpha($thumb, true); 
-                                    imagecopyresampled($thumb, $resize, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+                                    imagecopyresampled($thumb, $resize, 0, 0, $crop_x, $crop_y, $newWidth, $newHeight, $w, $h);
 
                                     switch($extension) {
                                         case "jpg":
                                         case "jpeg":
-                                            imagejpeg($thumb, $thumbnailPath, 85);
+                                            imagejpeg($thumb,$thumbnailPath, 85);
                                             break;
                                         case "png":
-                                            imagepng($thumb, $thumbnailPath, 0);
+                                            imagepng($thumb,$thumbnailPath, 0);
                                             break;
                                         case "gif": 
-                                            imagegif($thumb, $thumbnailPath, 85);
+                                            imagegif($thumb,$thumbnailPath, 85);
                                             break;
                                     }
                                     // $fileUploaded = "Le fichier a bien été enregistré";
+                                    imagedestroy($thumb);
                                 }
                             }
                         } else {
@@ -212,7 +223,7 @@
                         <label for="photo">Photo de profil</label>
 
                         <input type="file" class="form-control-file" id="photo" aria-describedby="fileHelp" name="photo">
-                        <small id="fileHelp" class="form-text text-muted">Vous pouvez selectionner un avatar ou une photo de profil. Elle ne doit pas faire plus de 30000 octets (30 KO). Seul les JPG, GIF et PNG sont autorisés.</small>
+                        <small id="fileHelp" class="form-text text-muted">Vous pouvez selectionner un avatar ou une photo de profil. Elle ne doit pas faire plus de 100000 octets (100 KO). Seul les JPG, GIF et PNG sont autorisés.</small>
                     </div>
                     <div class="form-group">
                         <label for="pseudo">Signature</label>

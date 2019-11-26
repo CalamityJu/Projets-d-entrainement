@@ -61,12 +61,6 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                         //On redimensionne l'image pour en créer un thumbnail et on l'insère dans le dossier imgMembres
                         //$imagePath
                         $thumbnailPath = $path.'/thumbnail-'.$newName.'.'.$extension;
-                        $newWidth = 100;
-
-                        $size = getimagesize("../" .$imagePath);
-                        $width = $size[0];
-                        $height = $size[0];
-                        $newHeight = intval($newWidth*$height/$width);
 
                         switch($extension) {
                             case "jpg":
@@ -80,10 +74,26 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                                 $resize = imagecreatefromgif("../" .$imagePath);
                                 break;
                         }
-                        $thumb = imagecreatetruecolor($newWidth, $newHeight);
+
+                        list($w, $h) = getimagesize("../" .$imagePath);
+                        if($w > $h) {
+                            $newHeight = 100;
+                            $newWidth = floor($w * ($newHeight / $h));
+                            $crop_x = ceil(($w-$h)/2);
+                            $crop_y = 0;
+                        } else {
+                            $newWidth = 100;
+                            $newHeight = floor($h * ($newWidth/ $w));
+                            $crop_x = 0;
+                            $crop_y = ceil(($h - $w)/2);
+                        }
+
+
+                        $thumb = imagecreatetruecolor(100, 100);
                         imagealphablending($thumb, false); 
                         imagesavealpha($thumb, true); 
-                        imagecopyresampled($thumb, $resize, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+                        imagecopyresampled($thumb, $resize, 0, 0, $crop_x, $crop_y, $newWidth, $newHeight, $w, $h);
 
                         switch($extension) {
                             case "jpg":
@@ -98,6 +108,7 @@ if (isset($_FILES['nvllePhoto']) && !empty($_FILES['nvllePhoto']['tmp_name'])) {
                                 break;
                         }
                         // $fileUploaded = "Le fichier a bien été enregistré";
+                        imagedestroy($thumb);
                     }
                 }
             } else {
