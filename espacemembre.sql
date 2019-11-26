@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mer. 20 nov. 2019 à 06:40
+-- Généré le :  mar. 26 nov. 2019 à 17:05
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.19
 
@@ -35,7 +35,6 @@ CREATE TABLE `membres` (
   `membre_mdp` text NOT NULL,
   `membre_description` text NOT NULL,
   `membre_photo` text NOT NULL,
-  `membre_thumbnail` text NOT NULL,
   `membre_signature` varchar(255) NOT NULL,
   `date_inscription` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `token_name` varchar(65) DEFAULT NULL
@@ -45,8 +44,8 @@ CREATE TABLE `membres` (
 -- Déchargement des données de la table `membres`
 --
 
-INSERT INTO `membres` (`membre_id`, `membre_pseudo`, `membre_email`, `membre_mdp`, `membre_description`, `membre_photo`, `membre_thumbnail`, `membre_signature`, `date_inscription`, `token_name`) VALUES
-(1, 'test', 'test@test.com', '$2y$10$Vxv0Z/L4yXu1AnCGfb2a5esEU8IyNpo0v4SmmrS1V1H0.Lo3tibEe', 'test', '', '', 'test', '2019-11-19 19:03:04', '513b9b4bd98cbd1e3fd8ac26955828882c3fd62ae5f9c257a58725d70b685453');
+INSERT INTO `membres` (`membre_id`, `membre_pseudo`, `membre_email`, `membre_mdp`, `membre_description`, `membre_photo`, `membre_signature`, `date_inscription`, `token_name`) VALUES
+(1, 'Test', 'test@test.com', '$2y$10$AxdUIV1vOuXxmYDd/LxXtOnjDXiJ4tQLK7/s5jczpHrsV5p1GhoIK', 'Test description', 'defaultAvatar.png', 'test', '2019-11-26 18:04:48', '4f3a731c0398a4ab9c1e4ff51003e8d44ec79b8d8b532b0e5eaf8bec36089cfc');
 
 --
 -- Index pour les tables déchargées
