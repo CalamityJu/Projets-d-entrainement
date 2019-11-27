@@ -47,17 +47,62 @@
         </div>
     </section>
 
-    <article class="container-fluid">
+    <article class="container-fluid pb-5">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12">
                     <h2 class="my-5">Le serveur</h2>
                     <p>Nous jouons sur un serveur modé en survie. Une saison sur Imperacube dure entre 2 et 6 mois, cela dépends de la difficulté du modpack et de l'avancé de la majorité des membres. En règle général, nous nous concertons tous pour décider de changer de saison.</p>
                     <p>En ce qui concerne le modpack, ce dernier peut-être entièrement fait par nos petites mains, tout comme sélectionné sur CurseForge, cela dépends de nos envies, de notre disponibilité et de notre motivation.</p>
+                    <p>Mais nous ne faisons pas que du minecraft. L'ImperaFamily c'est aussi des jeux de sociétés, des rencontres IRL, d'autres jeux vidéos, des events en tout genre et de loooooongues discussions et parties de rigolades. C'est ce qui fait notre distinction, sur Imperacube tout le monde se parle.</p>
                 </div>
             </div>
         </div>
     </article>
+
+    <section id="section2" class="container-fluid px-0">
+        <div class="row text-center">
+            <div class="col-12">
+                <div class="backgroundImage">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <article class="container-fluid pt-5">
+        <div class="container">
+            <div class="row text-center align-items-center">
+                <div class="col-12">
+                    <h2 class="my-5">Envie de nous rejoindre ?</h2>
+                </div>
+                <div class="col-md-6">
+                    <i class="fab fa-discord"></i>
+                    <h3 class="my-3">Passe sur notre discord</h3>
+                    <p>N'hésite pas à venir nous faire un coucou sur notre <a href="#">discord</a>. On n'a pas les yeux rivés sur les nouveaux-venus, alors n'hésite pas à nous signaler ta présence, ça serait dommage qu'on te râte parce qu'on était trop occupé à tapper sur un zombie</p>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="my-3">Inscris-toi</h3>
+                    <p>Comme nous voulons préserver l'ambiance et la qualité de notre communauté, nous avons prit le parti de demander une candidature pour nous rejoindre.</p>
+                    <p>Rien de bien difficile pour quelqu'un qui s'applique un peu et qui a fait un tour sur notre <a href="#">règlement</a> auparavant.</p>
+                    <i class="fab fa-font-awesome-flag"></i>
+                </div>
+                <div class="col-12">
+                <a class="btn mt-5" href="#" role="button">Je m'inscris</a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <img src="img/zombie.png" alt="Image de zombie" class="w-100">
+    <footer class="container-fluid">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <p>Fait avec <i class="fas fa-heart"></i> et <i class="fas fa-coffee"></i> par Juliette Lefebvre</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 
 <!-- Contenu Javascript 

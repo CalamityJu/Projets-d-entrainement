@@ -7,8 +7,8 @@ $(function(){
 
     //EventListeners
     $(window).on("resize", redimensionner);
-    $(".menuProfil").on("click", apparaitreProfil);
-    $("#quitterProfil").on("click", apparaitreProfil);
+    //$(".menuProfil").on("click", apparaitreProfil);
+    //$("#quitterProfil").on("click", apparaitreProfil);
     $("#modifierProfil").on("click", modifierProfil);
      
 });//$function
@@ -49,22 +49,22 @@ function apparaitreProfil(){
  * Fonction qui permet de modifier les informations du profil
  */
 function modifierProfil(){
-    $("#conteneurProfil #description").attr('contenteditable', 'true').css({
+    $(".modal-body #description").attr('contenteditable', 'true').css({
         border : "2px dotted grey",
         padding: "2px"
     });
     
-    $("#conteneurProfil #signature").attr('contenteditable', 'true').css({
+    $(".modal-body #signature").attr('contenteditable', 'true').css({
         border : "2px dotted grey",
         padding: "2px"
     });
 
-    $("#conteneurProfil #avatar").attr('contenteditable', 'true').attr('data-toggle', 'modal').attr('data-target','#exampleModalCenter').css({
+    $(".modal-body #avatar").attr('contenteditable', 'true').attr('data-toggle', 'modal').attr('data-target','#exampleModalCenter').css({
         border : "2px dotted grey",
         borderRadius: "50%",
         padding: "2px"
     });
-    $("#conteneurProfil .jumbotron").append('<button id="modificationProfilButton" type="buton" class="btn btn-primary mx-auto">Enregistrer les modifications</button>');
+    $(".modal-body .jumbotron").append('<button id="modificationProfilButton" type="buton" class="btn btn-primary mx-auto">Enregistrer les modifications</button>');
     $("#modificationProfilButton").on("click", changeProfil);
 
 }
@@ -102,17 +102,17 @@ function changeProfil(){
     //     console.log(erreur);
     // });
 
-    $("#conteneurProfil #description").attr('contenteditable', 'false').css({
+    $(".modal-body #description").attr('contenteditable', 'false').css({
         border : "unset",
         padding: "0"
     });
 
-    $("#conteneurProfil #signature").attr('contenteditable', 'false').css({
+    $(".modal-body #signature").attr('contenteditable', 'false').css({
         border : "unset",
         padding: "0"
     });
 
-    $("#conteneurProfil #avatar").css({
+    $(".modal-body #avatar").css({
         border : "unset",
         padding: "0"
     });

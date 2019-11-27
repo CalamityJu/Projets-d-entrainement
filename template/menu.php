@@ -61,6 +61,7 @@
 
     <!-- Contenu CSS -->
     <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/profil.css">
 
   </head>
@@ -75,7 +76,7 @@
       <div id="infosProfil">
           <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
               if(!empty($pseudo)){ 
-                echo '<div class="d-md-flex"><img class= "pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '">';
+                echo '<div class="d-md-flex"><img class= "btn pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '" data-toggle="modal" data-target="#profil">';
                 echo '<p class= "align-self-center mb-0 menuProfil">Bonjour ' . $pseudo;
                 echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
               } else {
@@ -99,7 +100,38 @@
   if (isset($_SESSION['id'])){
     echo  ''
 ?>
-<div id="conteneurProfil" class="container-fluid">
+
+<div class="modal fade" id="profil" tabindex="-1" role="dialog" aria-labelledby="ouvrirProfil" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ouvrirProfil">Mon profil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <main class="mx-2 pb-2 mx-md-5">
+          <div class="jumbotron">
+            <div class="d-flex justify-content-around mb-2 mb-md-5">
+              <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
+              <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
+            </div>
+            <h3>Description : </h3>
+            <p id="description" class="lead"><?php echo $description; ?></p>
+            <hr class="my-4">
+            <h3>Signature : </h3>
+            <p id="signature"><?php echo $signature; ?></p>
+          </div>
+          <div class="text-center">
+            <button id="modifierProfil" type="button" class="btn ml-auto text-center"><i class="fas fa-user-cog"></i></button>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div id="conteneurProfil" class="container-fluid">
   <div id="profil"> 
     <img id="quitterProfil" src="img/quitterProfil.png" alt="Icône pour quitter le profil">
     <h1 class="text-center py-5">
@@ -121,7 +153,7 @@
       </div>
     </main>
   </div>
-</div>
+</div> -->
 <?php 
   '';
   }         

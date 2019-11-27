@@ -48,43 +48,7 @@ nav {
 
 
 /* Contenu du profil */
-#conteneurProfil{
-    position:absolute;
-    height: 80vh;
-    display:none;
-    #profil{    
-        position: relative;
-        background-color: rgba(0, 0, 0, 0.534);
-        @media (min-width: 768px) {
-            position: absolute;
-            width: 70%;
-            border-radius: 30px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            main {
-                h3{
-                    font-size: 1.5em;
-                }//h3
-            }//main
-        }
-        h1{
-            //Icônes du profil
-            #modifierProfil{
-                position: relative;
-                left: 3%;
-                width: 40px;
-            }//#modifierProfil
-        }//h1
-        #quitterProfil {
-            position: absolute;
-            right: 7px;
-            top: 7px;
-            border-radius: 30px;
-            width: 40px;
-        }
-    } //#profil
-}//#conteneurProfil
+
 
 
 
@@ -121,6 +85,27 @@ nav {
                 position: absolute;
                 top: 100px;
             }
+        }
+    }
+    #section2{
+        .backgroundImage{
+            background: url("../img/petiteFille.jpg") no-repeat center fixed;
+            height: 70vh;
+            max-height: 1000px;
+            &:before{
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+                bottom: 0;
+                content: "";
+                left: 0;
+                right: 0;
+                position: absolute;
+                top: 100px;
+            }
+        }
+    }
+    article{
+        i{
+            font-size: 5em;
         }
     }
 }
