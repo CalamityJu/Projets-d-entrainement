@@ -50,6 +50,30 @@ nav #infosProfil img {
 }
 
 /* Contenu du profil */
+.modal-dialog {
+  max-width: 900px;
+}
+
+.modal-dialog .modal-content .modal-header {
+  border-bottom: none;
+}
+
+.modal-dialog .modal-content .modal-header h5 {
+  font-size: 1.5em;
+}
+
+.modal-dialog .modal-content .modal-body .jumbotron {
+  background-color: white;
+}
+
+.modal-dialog .modal-content .modal-body .jumbotron img {
+  border-radius: 50%;
+}
+
+.modal-dialog .modal-content .modal-body i {
+  font-size: 1.4em;
+}
+
 #index header .backgroundImage {
   background: url("../img/cochon.jpg") no-repeat center fixed;
   height: 90vh;
@@ -103,5 +127,25 @@ nav #infosProfil img {
 
 #index article i {
   font-size: 5em;
+}
+
+#index footer #realisePar {
+  position: relative;
+}
+
+#index footer #realisePar p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: #03002c;
+  text-shadow: 1px 1px 5px #d3e2ff;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#index footer #realisePar p i {
+  font-size: 1.2em;
 }
 /*# sourceMappingURL=profil.css.map */
