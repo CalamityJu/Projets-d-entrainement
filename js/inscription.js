@@ -19,7 +19,6 @@ $(function() {
     $("#pseudo").on("change", verifPseudo);
     $("#passwordConfirm").on("change", verifPass);
 
-    //On cache le bouton
 
 });//$function
 

@@ -1,4 +1,9 @@
 <?php
+    if(isset($_SESSION['pseudo']) && isset($_SESSION['id'])){
+        header('Location: index.php');
+        die();
+    }
+
     //On se connecte à la base de donnée
     try {
         $bdd= new PDO('mysql:host=localhost; dbname=espacemembre; charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -178,11 +183,6 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 mb-md-5 justify-content-between">
                 <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
-
-                <!-- PAS ENCORE IMPLEMENTE -- IL FAUDRA PENSER A ENLEVER justify-content-between DANS LA NAV AU DESSUS
-                <?php include("php/navbar.php");?>
-                -->
-
                     <div>
                         <a class="ml-3" href="connexion.php">Se connecter</a>
                     </div>

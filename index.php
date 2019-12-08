@@ -1,15 +1,18 @@
 <?php
-    include("template/menu.php"); // On insère le menu et on démarre la session. 
+    include("template/debut.php"); // On insère le menu et on démarre la session. 
 ?>
 <div id="index">
+    <?php
+        include("template/menu.php"); // On insère le menu et on démarre la session. 
+    ?>
     <header class="container-fluid px-0">
         <div class="row text-center">
             <div class="col-12">
-                <div class="backgroundImage">
-                </div>
+                <div class="backgroundImage"></div>
             </div>
         </div>
     </header>
+    
 
     <main class="container-fluid bg-light pb-5">
         <div class="container">
@@ -41,8 +44,8 @@
     <section id="section1" class="container-fluid px-0">
         <div class="row text-center">
             <div class="col-12">
-                <div class="backgroundImage">
-                </div>
+                <div class="backgroundImage d-none d-md-block"></div>
+                <img src="img/combat.jpg" alt="Combat" class="d-md-none w-100">
             </div>
         </div>
     </section>
@@ -63,8 +66,8 @@
     <section id="section2" class="container-fluid px-0">
         <div class="row text-center">
             <div class="col-12">
-                <div class="backgroundImage">
-                </div>
+                <div class="backgroundImage d-none d-md-block"></div>
+                <img src="img/petiteFille.jpg" alt="Petite Fille" class="d-md-none w-100">
             </div>
         </div>
     </section>

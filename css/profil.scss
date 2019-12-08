@@ -17,6 +17,10 @@ nav {
     }
 }
 
+.bg-light{
+    background-color: rgb(255, 255, 255) !important;
+}
+
 /*Avatar dans le profil */
 .profil{
     img {
@@ -140,9 +144,12 @@ nav {
                 color: rgb(3, 0, 44);
                 text-shadow: 1px 1px 5px rgb(211, 226, 255);
                 font-weight: bold;
-                font-size: 1.1em;
-                i{
+                width: 100%;
+                @media (min-width: 992px) {
+                    font-size: 1.1em;
+                    i{
                     font-size: 1.2em;
+                    }
                 }
             }
         }

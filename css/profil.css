@@ -11,6 +11,10 @@ nav #infosProfil img {
   position: relative;
 }
 
+.bg-light {
+  background-color: white !important;
+}
+
 /*Avatar dans le profil */
 .profil img {
   width: 90px;
@@ -142,10 +146,15 @@ nav #infosProfil img {
   color: #03002c;
   text-shadow: 1px 1px 5px #d3e2ff;
   font-weight: bold;
-  font-size: 1.1em;
+  width: 100%;
 }
 
-#index footer #realisePar p i {
-  font-size: 1.2em;
+@media (min-width: 992px) {
+  #index footer #realisePar p {
+    font-size: 1.1em;
+  }
+  #index footer #realisePar p i {
+    font-size: 1.2em;
+  }
 }
 /*# sourceMappingURL=profil.css.map */

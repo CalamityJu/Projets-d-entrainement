@@ -1,3 +1,9 @@
+<!-- ========================================================================
+    PENSER A CHANGER LA PAGE DE REDIRECTION POUR INSCRIPTION UNE FOIS EN PROD
+    ==========================================================================-->
+
+
+
 <?php
     //On se connecte à la base de donnée
     try {
@@ -7,11 +13,12 @@
     } 
 
     //Si l'utilisateur a enregistré des données dans le formulaire on vérifie qu'elles sont dans la base de donnée
-    if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['passwordConfirm'])) {
+    if (isset($_POST['pseudo']) && isset($_POST['password']) && isset($_POST['passwordConfirm']) && isset($_POST['hidden'])) {
         if (!empty($_POST['pseudo']) AND !empty($_POST['password']) AND !empty($_POST['passwordConfirm'])){
             $pseudoEntered = htmlspecialchars($_POST['pseudo']);
             $password1 = htmlspecialchars($_POST['password']);
             $password2 = htmlspecialchars($_POST['passwordConfirm']);
+            $redirection = $_POST['hidden'];
             if($password1 == $password2) {
                 //On récupère les informations de la base de donnée
                 $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_mdp FROM membres WHERE membre_pseudo = :pseudo');
@@ -43,8 +50,14 @@
                     //On crée un cookie avec le token et l'id
                     setcookie("id", $id, time() + 7*24*3600);
                     setcookie("token", $token, time() + 7*24*3600);
-                    
-                    header('Location: index.php');
+
+                    /*===========================================================================================================
+                    ================================CHANGER LA DIRECTION DE LA PAGE D'INSCRIPTION================================
+                    ===========================================================================================================*/
+                    if($redirection === "http://localhost/projets-d-entrainement/inscription.php") {
+                        $redirection = 'index.php';
+                    }
+                    header("Location:".$redirection);
                 }
             } else {
                 $passwordIncorrect = "Les mots de passes ne sont pas identiques";
@@ -70,11 +83,6 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 mb-md-5 justify-content-between">
                 <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
-
-                <!-- PAS ENCORE IMPLEMENTE -- IL FAUDRA PENSER A ENLEVER justify-content-between DANS LA NAV AU DESSUS
-                <?php include("php/navbar.php");?>
-                -->
-
                     <div>
                         <a class="ml-3" href="inscription.php">S'inscrire</a>
                     </div>
@@ -101,9 +109,15 @@
                     <input type="password" class="form-control" id="passwordConfirm" placeholder="Confirmation mot de passe" aria-describedby="passwordConfirm" name="passwordConfirm">
                     <small id="passwordConfirm" class="form-text text-muted">Veuillez ressaisir votre mot de passe.</small>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="hidden" maxlength="255" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" name="hidden" hidden="hidden">
+                </div>
+                <button type="submit" class="btn btn-primary" id="buttonConnexion">Submit</button>
             </fieldset>
             </form>
         </main>
+
+        <!-- Fichiers Js -->
+        <!--<script src="js/connexion.js"></script>-->
     </body>
 </html>
