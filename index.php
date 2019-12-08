@@ -87,18 +87,19 @@
                     <i class="fab fa-font-awesome-flag"></i>
                 </div>
                 <div class="col-12">
-                <a class="btn mt-5" href="#" role="button">Je m'inscris</a>
+                <a class="btn btn-primary mt-5" href="#" role="button">Je m'inscris</a>
                 </div>
             </div>
         </div>
     </article>
 
+    
+    <footer class="container-fluid px-0">
     <img src="img/zombie.png" alt="Image de zombie" class="w-100">
-    <footer class="container-fluid">
         <div class="container">
             <div class="row text-center">
-                <div class="col-12">
-                    <p>Fait avec <i class="fas fa-heart"></i> et <i class="fas fa-coffee"></i> par Juliette Lefebvre</p>
+                <div class="col-12" id="realisePar">
+                    <p>Fait avec <i class="fas fa-heart mx-1"></i> et <i class="fas fa-coffee mx-1"></i> par CalamityJu et Bizounours</p>
                 </div>
             </div>
         </div>

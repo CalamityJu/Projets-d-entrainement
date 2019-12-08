@@ -7,8 +7,6 @@ $(function(){
 
     //EventListeners
     $(window).on("resize", redimensionner);
-    //$(".menuProfil").on("click", apparaitreProfil);
-    //$("#quitterProfil").on("click", apparaitreProfil);
     $("#modifierProfil").on("click", modifierProfil);
      
 });//$function
@@ -29,6 +27,7 @@ function redimensionner() {
 /**
  * Fonction qui fait apparaitre le profil
  */
+/*
 function apparaitreProfil(){
     console.log("click");
     if (switchProfil === false){
@@ -44,6 +43,7 @@ function apparaitreProfil(){
         });
     }
 }
+*/
 
 /**
  * Fonction qui permet de modifier les informations du profil
