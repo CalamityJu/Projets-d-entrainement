@@ -10,17 +10,18 @@
   } 
 
   //On vérifie si l'utilisateur est déjà connecté, si c'est le cas, on attribut son pseudo à la variable $pseudo
-  if(isset($_SESSION['pseudo']) && isset($_SESSION['id']) && isset($_SESSION['signature']) && isset($_SESSION['description'])&& isset($_SESSION['avatar'])) {
+  if(isset($_SESSION['pseudo']) && isset($_SESSION['id']) && isset($_SESSION['signature']) && isset($_SESSION['description'])&& isset($_SESSION['avatar']) && isset($_SESSION['role'])) {
       $pseudo = $_SESSION['pseudo'];
       $id = $_SESSION['id'];
       $signature = $_SESSION['signature'];
       $description = $_SESSION['description'];
       $avatar = $_SESSION['avatar'];
+      $role = $_SESSION['role'];
   } elseif (isset($_COOKIE["id"]) && isset($_COOKIE['token'])){
     $idCookie = htmlspecialchars($_COOKIE["id"]);
     $tokenCookie = htmlspecialchars($_COOKIE["token"]);
     //On récupère les informations de la bdd
-    $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, token_name FROM membres WHERE membre_id = :id');
+    $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, token_name, roles.name, roles.slug, roles.level FROM membres LEFT JOIN roles ON membres.role_id=roles.id WHERE membre_id = :id');
     $req->execute(array(
       'id' => $idCookie
     ));
@@ -31,11 +32,13 @@
     $signature = $donnees['membre_signature'];
     $description = $donnees['membre_description'];
     $avatar = $donnees['membre_photo'];
+    $role = $donnees['roles.name'];
     $_SESSION['id'] = $idCookie;
     $_SESSION['pseudo'] = $pseudo;
     $_SESSION['description'] = $description;
     $_SESSION['signature'] = $signature;
     $_SESSION['avatar'] = $avatar;
+    $_SESSION['role'] = $roles;
 
     $req->closeCursor();
   
@@ -44,10 +47,8 @@
   } 
 
   //On attribue le rang au joueur
-  if(isset($rang)){
-    
-  } else {
-    $rang = "visiteur";
+  if(!isset($role)){
+    $role = "visiteur";
   }
   
 ?>
@@ -76,7 +77,7 @@
       <div id="infosProfil">
           <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
               if(!empty($pseudo)){ 
-                echo '<div class="d-md-flex"><img class= "btn pr-2 ' . $rang . ' d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '" data-toggle="modal" data-target="#profil">';
+                echo '<div class="d-md-flex"><img class= "btn pr-2 ' . $role . ' d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '" data-toggle="modal" data-target="#profil">';
                 echo '<p class= "align-self-center mb-0 menuProfil">Bonjour ' . $pseudo;
                 echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p> </div>';
               } else {
@@ -105,7 +106,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ouvrirProfil">Mon profil</h5>
+        <h5 class="modal-title" id="ouvrirProfil">Mon profileeee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -115,7 +116,7 @@
           <div class="jumbotron">
             <div class="d-flex justify-content-around mb-2 mb-md-5">
               <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-              <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
+              <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $role; ?>' alt="Avatar de profil">
             </div>
             <h3>Description : </h3>
             <p id="description" class="lead"><?php echo $description; ?></p>
@@ -143,7 +144,7 @@
       <div class="jumbotron">
         <div class="d-flex justify-content-around mb-2 mb-md-5">
           <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-          <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
+          <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $role; ?>' alt="Avatar de profil">
         </div>
         <h3>Description : </h3>
         <p id="description" class="lead"><?php echo $description; ?></p>
