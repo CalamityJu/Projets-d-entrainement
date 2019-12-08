@@ -52,10 +52,16 @@
         $pseudo = ""; 
     } 
 
-    // //On attribue le rang au joueur
-    // if(!isset($role)){
-    //   $role = "Visiteur";
-    // }
+    // On s'assure que le joueur n'est pas banni avant de continuer, sinon on le redirige à la page d'accueil
+    $bannis = $bdd->query('SELECT * FROM membres_bannis');
+    while($b = $bannis->fetch()){
+        if ($_SERVER['REMOTE_ADDR'] == $b['banni_ip']){
+            header('Location:index.php');
+        }elseif (isset($pseudo) && $pseudo == $b['banni_pseudo']){
+            header('Location:index.php');
+        }
+    }
+    
     
     ?>
     <!DOCTYPE html>

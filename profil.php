@@ -25,4 +25,4 @@
 
 <!-- Contenu Javascript -->
 <script src="js/jquery.js"></script>
-<script src="js/profil.js"></script>
+<script src="js/menu.js"></script>

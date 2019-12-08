@@ -116,4 +116,4 @@ A METTRE DANS LE FOOTER !!!!
 -->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/profil.js"></script>
+<script src="js/menu.js"></script>

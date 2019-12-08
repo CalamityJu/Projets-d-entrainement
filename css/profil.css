@@ -78,6 +78,43 @@ nav #infosProfil img {
   font-size: 1.4em;
 }
 
+/* Panneau d'administration et de modération */
+#volet {
+  width: 250px;
+  padding: 10px;
+  background: white;
+  color: #fff;
+  position: fixed;
+  left: -250px;
+  top: 75px;
+  z-index: 200;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+#volet div.ouvrirVolet {
+  padding: 10px 25px;
+  background: rgba(85, 85, 85, 0.466);
+  color: #fff;
+  text-decoration: none;
+  position: absolute;
+  right: -56px;
+  top: 13px;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  border-radius: 0 0 8px 8px;
+}
+
+#volet div.ouvrirVolet:hover {
+  background: #555555;
+  cursor: pointer;
+}
+
+#volet div.ouvrirVolet i {
+  -webkit-transform: rotate(-270deg);
+  transform: rotate(-270deg);
+}
+
 #index header .backgroundImage {
   background: url("../img/cochon.jpg") no-repeat center fixed;
   height: 90vh;

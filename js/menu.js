@@ -1,6 +1,6 @@
 //On initialise les variables globales
 let tailleNavBar = $("#navbar").height(),
-    switchProfil = false;
+    switchVolet = false;
 
 //On attends que le DOM soit chargé
 $(function(){
@@ -8,6 +8,8 @@ $(function(){
     //EventListeners
     $(window).on("resize", redimensionner);
     $("#modifierProfil").on("click", modifierProfil);
+    $("#iconeVolet").on("click", toggleVolet);
+
      
 });//$function
 
@@ -23,27 +25,6 @@ function redimensionner() {
         $("#conteneurProfil").css("margin-top", "unset");
     }
 };
-
-/**
- * Fonction qui fait apparaitre le profil
- */
-/*
-function apparaitreProfil(){
-    console.log("click");
-    if (switchProfil === false){
-        switchProfil = true;
-        $("#conteneurProfil").fadeIn(100, function(){
-            $("#conteneurProfil").show();
-        });
-
-    } else {
-        switchProfil = false;
-        $("#conteneurProfil").fadeOut(100, function(){
-            $("#conteneurProfil").hide();
-        });
-    }
-}
-*/
 
 /**
  * Fonction qui permet de modifier les informations du profil
@@ -70,7 +51,7 @@ function modifierProfil(){
 }
 
 /**
- * Fonction qui envoie les inforamtions de profil modifiée à la page PHP
+ * Fonction qui envoie les informations de profil modifiée à la page PHP
  */
 function changeProfil(){
     let description = $("#description").text(),
@@ -118,4 +99,15 @@ function changeProfil(){
     });
 
     $("#modificationProfilButton").remove();
+}
+
+
+function toggleVolet(){
+    if(switchVolet == false){
+        switchVolet = true;
+        $("#volet").css("left", "0px");
+    }else{
+        switchVolet = false;
+        $("#volet").css("left", "-250px");
+    }
 }

@@ -1,26 +1,41 @@
 <nav id="navbar" class="navbar sticky-top navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
+  <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
 
-    
-    <?php include("navbar.php");?> 
-    
+  
+  <?php include("navbar.php");?> 
+  
 
-    <div id="infosProfil">
-        <div class="d-flex justify-content-end">
-        <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
-            if(!empty($pseudo)){ 
-            echo '<img class= "btn pr-2 d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '" data-toggle="modal" data-target="#profil">';
-            echo '<p class= "align-self-center mb-2 mb-md-0 menuProfil"><span class="d-none d-md-inline-block" >Bonjour ' . $pseudo.'</span>';
-            echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p>';
-            } else {
-            echo '<p class= "align-self-end mb-0"> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
-            echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
-            }
-        ?>
-        </div>
+  <div id="infosProfil">
+    <div class="d-flex justify-content-end">
+      <?php // Si le pseudo est défini, on affiche le pseudo, sinon on affiche les pages d'inscription et de connexion. 
+        if(!empty($pseudo)){ 
+        echo '<img class= "btn pr-2 d-none d-md-block menuProfil" src="imgMembres/thumbnail-' . $avatar . '" data-toggle="modal" data-target="#profil">';
+        echo '<p class= "align-self-center mb-2 mb-md-0 menuProfil"><span class="d-none d-md-inline-block" >Bonjour ' . $pseudo.'</span>';
+        echo '<a class="ml-3" href="deconnexion.php">Se déconnecter</a> </p>';
+        } else {
+        echo '<p class= "align-self-end mb-0"> <a class="ml-3" href="inscription.php">S\'inscrire</a>';
+        echo '<a class="ml-3" href="connexion.php">Se connecter</a> </p>';
+        }
+      ?>
     </div>
-    </div>
+  </div>
 </nav>
+
+<?php 
+  if (isset($permission_lvl) && $permission_lvl >=5){
+    echo ""
+?>
+<section id="volet">
+    <?php if($slug == "admin") { echo '<p><a href="#">Panneau d\'administration</a></p>'; } ?>
+    <p><a href="#">Panneau de modération</a></p>
+    <div id="iconeVolet" href="#volet" class="ouvrirVolet"><i class="fas fa-cogs"></i></div>
+</section>
+<?php
+  "'";}
+?>
+
+<!-- Panneau d'administration et/ou de modération si les membres ont les droits -->
+
 
 
   

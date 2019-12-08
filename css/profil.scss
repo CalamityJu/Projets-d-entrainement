@@ -5,6 +5,8 @@ $membre : rgb(28, 146, 28);
 $visiteur: rgb(0, 0, 0);
 
 
+        //MENU ET PROFIL
+
 /*Avatar dans barre de navigation */
 nav {
     #infosProfil{
@@ -70,6 +72,46 @@ nav {
             }
             i{
                 font-size: 1.4em;
+            }
+        }
+    }
+}
+
+/* Panneau d'administration et de modération */
+#volet {
+    width: 250px;
+    padding: 10px; 
+    background: rgb(255, 255, 255); 
+    color: #fff;
+    position: fixed;
+    left:-250px;
+    top: 75px;
+    z-index: 200;
+    -webkit-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+    div{
+        &.ouvrirVolet{
+            padding: 10px 25px;
+            background: rgba(85, 85, 85, 0.466);
+            color: #fff;
+            text-decoration: none;
+            position: absolute; 
+            right: -56px;
+            top: 13px;
+            -ms-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -webkit-transform: rotate(270deg);
+            transform: rotate(270deg);
+            border-radius: 0 0 8px 8px;
+            &:hover{
+                background: rgb(85, 85, 85);
+                cursor: pointer;
+            }
+            i{
+            -ms-transform: rotate(-270deg);
+            -moz-transform: rotate(-270deg);
+            -webkit-transform: rotate(-270deg);
+            transform: rotate(-270deg);
             }
         }
     }
