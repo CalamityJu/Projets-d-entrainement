@@ -92,7 +92,7 @@
           <div class="jumbotron">
             <div class="d-flex justify-content-around mb-2 mb-md-5">
               <h2 id="pseudo" class="text-center align-self-center mb-0"><?php echo $pseudo; ?></h2>
-              <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $rang; ?>' alt="Avatar de profil">
+              <img id="avatar" src='imgMembres/thumbnail-<?php echo $avatar; ?>' class='<?php echo $role; ?>' alt="Avatar de profil">
             </div>
             <h3>Description : </h3>
             <p id="description" class="lead"><?php echo $description; ?></p>
