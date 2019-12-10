@@ -28,7 +28,7 @@
     echo ""
 ?>
 <section id="volet">
-    <?php if($slug == "admin") { echo '<p><a href="#">Panneau d\'administration</a></p>'; } ?>
+    <?php if($slug == "admin") { echo '<p><a href="administration.php">Panneau d\'administration</a></p>'; } ?>
     <p><a href="#">Panneau de modération</a></p>
     <div id="iconeVolet" href="#volet" class="ouvrirVolet"><i class="fas fa-cogs"></i></div>
 </section>
