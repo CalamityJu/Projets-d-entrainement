@@ -10,7 +10,7 @@
     if(isset($_POST['supp_membre']) && !empty($_POST['supp_membre'])){
         //Supprimer le membre
         $req = $bdd->prepare('DELETE FROM membres WHERE membre_id = ?');
-        $req->execute(array($_POST['supp_membre']));
+        $req->execute(array($_POST['membre_id']));
         $req->closeCursor();
         header('Location:'.$_SERVER['HTTP_REFERER']);
         die();

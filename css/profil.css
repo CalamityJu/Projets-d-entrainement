@@ -194,4 +194,8 @@ nav #infosProfil img {
     font-size: 1.2em;
   }
 }
+
+#administration_page #volet {
+  display: none;
+}
 /*# sourceMappingURL=profil.css.map */

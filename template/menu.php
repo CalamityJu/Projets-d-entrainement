@@ -21,6 +21,8 @@
   </div>
 </nav>
 
+
+<!-- PANNEAU D'ADMINISTRATION / MODERATION si les membres ont les droits -->
 <?php 
   if (isset($permission_lvl) && $permission_lvl >=5){
     echo ""
@@ -34,16 +36,11 @@
   "'";}
 ?>
 
-<!-- Panneau d'administration et/ou de modération si les membres ont les droits -->
-
-
-
-  
-    <!-- PROFIL : 
-        - caché à la base
-        - apparait lorsque l'on clique sur son avatar
-        - possibilité de le modifier en appuyant sur un bouton
-    -->
+<!-- PROFIL : 
+    - caché à la base
+    - apparait lorsque l'on clique sur son avatar
+    - possibilité de le modifier en appuyant sur un bouton
+-->
 
     <?php 
       if (isset($_SESSION['id'])){

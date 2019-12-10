@@ -1,8 +1,6 @@
 <?php
     include("template/debut.php"); // On insère démarre la session et on démarre la page. 
 
-    include("template/menu.php"); // On insère le menu. 
-
     //On vérifie que la personne a les accès
     if(!isset($slug) || $slug !== "admin"){
         echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
@@ -12,17 +10,15 @@
         exit();
     }
 
-    if(isset($_GET['supprime']) AND !empty($_GET['supprime'])){
-        $supprime = (int) $_GET['supprime'];
-        $req = $bdd->prepare('DELETE FROM membres WHERE membre_id = ?');
-        $req->execute(array($supprime));
-        $req->closeCursor();
-    }
-
     $membres = $bdd->query('SELECT * FROM membres LEFT JOIN roles ON membres.role_id=roles.id ORDER BY membre_id DESC LIMIT 0,20');
+    $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
 ?>
 
 <section id="administration_page">
+
+    <?php
+        include("template/menu.php"); // On insère le menu et on démarre la session. 
+    ?>
     <ul class="nav">
         <li class="nav-item">
             <a id="admin_membres_link" class="nav-link active" href="#">Membres</a>
@@ -58,14 +54,8 @@
                             Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <form action="" method="post">
-                                <input type="hidden" value="<?= $membre['membre_id'];?>">
-                                <button class="dropdown-item my-0">Modifier rang</button>
-                            </form>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#suppMembre" data-whatever="<?= $membre['membre_id'];?>">Open modal for <?= $membre['membre_id'];?></button>
-                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                Supprimer
-                            </button> -->
+                            <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierGrade" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Modifier grade</button>
+                            <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#suppMembre" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Supprimer</button>
                             <form action="" method="post">
                                 <input type="hidden" value="<?= $membre['membre_id'];?>">
                                 <button class="dropdown-item my-0">Bannir</button>
@@ -81,90 +71,73 @@
     </div>
 
 
-    <!-- MODALS -->
-    <div class="modal fade" id="suppMembre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal suppression membre -->
+    <div class="modal fade" id="suppMembre" tabindex="-1" role="dialog" aria-labelledby="suppMembreLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <h5 class="modal-title" id="suppMembreLabel">Suppression</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
+            <form action="function/suppression_membre.php" method="post">
+                <div class="modal-body">
+                <div id="avertissementSuppression"></div>
+                    <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
                 </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Message:</label>
-                    <textarea class="form-control" id="message-text"></textarea>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                 </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
+            </form>
             </div>
         </div>
     </div>
 
-    <form action="function/suppression_membre.php" method="post">
-        <input type="hidden" name="supp_membre" value="<?= $membre['membre_id'];?>">
-        <button class="dropdown-item my-0">Supprimer</button>
-    </form>
-
-
-
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal modifier grade -->
+    <div class="modal fade" id="modifierGrade" tabindex="-1" role="dialog" aria-labelledby="modifRoleLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="modifRoleLabel">Modifier grade</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                Vous êtes sur le point de supprimer
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="function/suppression_membre.php" method="post">
-                    <input type="hidden" name="supp_membre" value="<?= $membre['membre_id'];?>">
-                    <button class="dropdown-item my-0">Supprimer</button>
-                </form>
-            </div>
+            <form action="function/modification_grade_membre.php" method="post">
+                <div class="modal-body">
+                    <div id="avertissementModificationGrade"></div>
+                    <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
+                    <div class="form-group">
+                        <select class="form-control" id="nouveau_role" name="nouveau_grade">
+                            <?php while ($grade = $grades->fetch()) {?>
+                                <option value="<?=$grade['slug']?>"><?=$grade['name']?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                </div>
+            </form>
             </div>
         </div>
     </div>
-    <form action="function/suppression_membre.php" method="post">
-        <input type="hidden" name="supp_membre" value="<?= $membre['membre_id'];?>">
-        <button class="dropdown-item my-0">Supprimer</button>
-    </form> -->
 
 
 
     <div id="admin_forum_page">
         <h2>Coucou forum </h2>
     </div>
-
-    <ul>
-        <?php while ($m = $membres->fetch()) { ?>
-            <li>
-                <?= $m['membre_id'] ?> : <?= $m['membre_pseudo']; ?> 
-                - <a href="administration.php?supprime=<?=$m['membre_id'] ?>">Supprimer</a> 
-            </li>
-        <?php } ?>
-    </ul>
 </section>
 
 <!-- Fichiers JS -->
 <script src="js/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/menu.js"></script>
 <script src="js/administration.js"></script>
 </body>
 </html>

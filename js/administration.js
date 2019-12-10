@@ -28,14 +28,26 @@ function afficherPageForum(){
     pageMembre.style.display="none";
 }
 
-//Fonction qui ajoute la valeur à la modal
-
+//Fonction qui ajoute la valeur à la modal lors de la suppression
 $('#suppMembre').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var recipient = button.data('whatever') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var recipientName = button.data('membre_nom'); // Extract info from data-* attributes
+    var recipientId = button.data('membre_id');
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.modal-title').text('New message to ' + recipient)
-    modal.find('.modal-body input').val(recipient)
-  })
+    var modal = $(this);
+    modal.find('.modal-title').text('Suppression de ' + recipientName);
+    modal.find('.modal-body input').val(recipientId);
+    modal.find('.modal-body #avertissementSuppression').text('Vous êtes sur le point de supprimer ' + recipientName +". Cette action est irréversible.");
+  });
+
+  
+// Fonction qui ajoute la valuer à la modal lors de la modification de grade
+  $('#modifierGrade').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var recipientName = button.data('membre_nom'); // Extract info from data-* attributes
+    var recipientId = button.data('membre_id');
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('.modal-title').text('Modification du grade de ' + recipientName);
+    modal.find('.modal-body input').val(recipientId);
+  });
