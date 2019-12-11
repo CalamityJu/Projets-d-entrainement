@@ -23,7 +23,7 @@
         $idCookie = htmlspecialchars($_COOKIE["id"]);
         $tokenCookie = htmlspecialchars($_COOKIE["token"]);
         //On récupère les informations de la bdd
-        $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, token_name, roles.name, roles.slug, roles.level FROM membres LEFT JOIN roles ON membres.role_id=roles.id WHERE membre_id = :id');
+        $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, membre_email, token_name, roles.name, roles.slug, roles.level FROM membres LEFT JOIN roles ON membres.role_id=roles.id WHERE membre_id = :id');
         $req->execute(array(
         'id' => $idCookie
         ));
@@ -36,6 +36,7 @@
         $avatar = $donnees['membre_photo'];
         $role = $donnees['name'];
         $slug = $donnees['slug'];
+        $email = $donnees['membre_email'];
         $permission_lvl = $donnees['level'];
         $_SESSION['id'] = $idCookie;
         $_SESSION['pseudo'] = $pseudo;
@@ -45,7 +46,6 @@
         $_SESSION['role'] = $role;
         $_SESSION['slug'] = $slug;
         $_SESSION['permission_lvl']=$permission_lvl;
-
         $req->closeCursor();
     
     } else {
@@ -55,9 +55,9 @@
     // On s'assure que le joueur n'est pas banni avant de continuer, sinon on le redirige à la page d'accueil
     $bannis = $bdd->query('SELECT * FROM membres_bannis');
     while($b = $bannis->fetch()){
-        if ($_SERVER['REMOTE_ADDR'] == $b['banni_ip']){
+        if (isset($pseudo) && $pseudo == $b['banni_pseudo']){
             header('Location:index.php');
-        }elseif (isset($pseudo) && $pseudo == $b['banni_pseudo']){
+        } elseif (isset($email) && $email == $b['banni_mail']){
             header('Location:index.php');
         }
     }

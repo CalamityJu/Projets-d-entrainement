@@ -42,30 +42,29 @@
             </thead>
             <tbody>
             <?php while ($membre = $membres->fetch()) {?>
-                <tr>
-                <th scope="row"><?= $membre['membre_id']; ?></th>
-                <td><?= $membre['membre_pseudo'];?></td>
-                <td><?= $membre['name'];?></td>
-                <td><?= $membre['membre_email'];?></td>
-                <td><?= $membre['date_inscription'];?></td>
-                <td>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Actions
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierGrade" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Modifier grade</button>
-                            <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#suppMembre" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Supprimer</button>
-                            <form action="" method="post">
-                                <input type="hidden" value="<?= $membre['membre_id'];?>">
-                                <button class="dropdown-item my-0">Bannir</button>
-                            </form>
+                <tr id="ligneMembre">
+                    <th scope="row"><?= $membre['membre_id']; ?></th>
+                    <td><?= $membre['membre_pseudo'];?></td>
+                    <td id="gradeMembre"><?= $membre['name'];?></td>
+                    <td><?= $membre['membre_email'];?></td>
+                    <td><?= $membre['date_inscription'];?></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierGrade" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Modifier grade</button>
+                                <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#suppMembre" data-membre_nom="<?= $membre['membre_pseudo'];?>" data-membre_id="<?= $membre['membre_id'];?>">Supprimer</button>
+                                <form action="function/bannir_membre.php" method="post">
+                                    <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
+                                    <button class="dropdown-item my-0">Bannir</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </td>
+                    </td>
+                    <?php } ?>
                 </tr>
-                <tr>
-            <?php } ?>
             </tbody>
         </table>
     </div>
@@ -111,9 +110,11 @@
                     <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
                     <div class="form-group">
                         <select class="form-control" id="nouveau_role" name="nouveau_grade">
-                            <?php while ($grade = $grades->fetch()) {?>
+                            <?php while ($grade = $grades->fetch()) {
+                                if($grade['slug'] !== "ban"){
+                            ?>
                                 <option value="<?=$grade['slug']?>"><?=$grade['name']?></option>
-                            <?php } ?>
+                            <?php }} ?>
                         </select>
                     </div>
                 </div>

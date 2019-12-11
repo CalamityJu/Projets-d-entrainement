@@ -10,6 +10,12 @@ window.onload = function() {
     document.getElementById("admin_membres_link").addEventListener("click", afficherPageMembre);
     document.getElementById("admin_forum_link").addEventListener("click", afficherPageForum);
 
+    let gradeMembre = document.getElementById("gradeMembre");
+    if (gradeMembre.textContent == "Banni"){
+      gradeMembre.parentElement.style.backgroundColor = "#d18b8b";
+    }
+    console.log(gradeMembre.textContent);
+
 }//window.onload
 
 /**
