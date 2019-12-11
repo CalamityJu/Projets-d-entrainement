@@ -7,7 +7,7 @@
         die('Erreur : ' . $e->getMessage());
     } 
 
-    if(isset($_POST['supp_membre']) && !empty($_POST['supp_membre'])){
+    if(isset($_POST['membre_id']) && !empty($_POST['membre_id'])){
         //Supprimer le membre
         $req = $bdd->prepare('DELETE FROM membres WHERE membre_id = ?');
         $req->execute(array($_POST['membre_id']));
