@@ -49,6 +49,12 @@
                     <td><?= $membre['membre_email'];?></td>
                     <td><?= $membre['date_inscription'];?></td>
                     <td>
+                        <?php if($membre['name'] == "Banni"){?>
+                            <form action="function/debannir_membre.php" method="post">
+                                <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
+                                <button class="btn btn-secondary my-0" type="submit">Dé-bannir</button>
+                            </form>
+                        <?php }else { ?>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Actions
@@ -62,6 +68,7 @@
                                 </form>
                             </div>
                         </div>
+                        <?php } ?>
                     </td>
                     <?php } ?>
                 </tr>
