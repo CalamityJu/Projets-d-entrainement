@@ -1,5 +1,5 @@
 <?php
-    include("template/debut.php"); // On insère démarre la session et on démarre la page. 
+    include("template/debut.php"); // On démarre la session et on démarre la page. 
 
     //On vérifie que la personne a les accès
     if(!isset($slug) || $slug !== "admin"){
@@ -12,12 +12,13 @@
 
     $membres = $bdd->query('SELECT * FROM membres LEFT JOIN roles ON membres.role_id=roles.id ORDER BY membre_id DESC LIMIT 0,20');
     $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
+    $bannis = $bdd->query('SELECT * FROM membres_bannis');
 ?>
 
 <section id="administration_page">
 
     <?php
-        include("template/menu.php"); // On insère le menu et on démarre la session. 
+        include("template/menu.php"); // On insère le menu. 
     ?>
     <ul class="nav">
         <li class="nav-item">
@@ -44,8 +45,8 @@
             <?php while ($membre = $membres->fetch()) {?>
                 <tr id="ligneMembre">
                     <th scope="row"><?= $membre['membre_id']; ?></th>
-                    <td><?= $membre['membre_pseudo'];?></td>
-                    <td id="gradeMembre"><?= $membre['name'];?></td>
+                    <td class="pseudoMembre"><?= $membre['membre_pseudo'];?></td>
+                    <td class="gradeMembre"><?= $membre['name'];?></td>
                     <td><?= $membre['membre_email'];?></td>
                     <td><?= $membre['date_inscription'];?></td>
                     <td>
@@ -134,7 +135,15 @@
         </div>
     </div>
 
+    <button type="button" class="btn btn-secondary">Obtenir la liste des bannis</button>
 
+    <div id="liste_des_bannis">
+        <ul>
+            <?php while ($banni = $bannis->fetch()) {?>
+                <li><?= $banni['banni_pseudo'];?></li>
+            <?php } ?>
+        </ul>
+    </div>
 
     <div id="admin_forum_page">
         <h2>Coucou forum </h2>

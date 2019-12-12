@@ -10,11 +10,13 @@ window.onload = function() {
     document.getElementById("admin_membres_link").addEventListener("click", afficherPageMembre);
     document.getElementById("admin_forum_link").addEventListener("click", afficherPageForum);
 
-    let gradeMembre = document.getElementById("gradeMembre");
-    if (gradeMembre.textContent == "Banni"){
-      gradeMembre.parentElement.style.backgroundColor = "#d18b8b";
+    let gradeMembreElmt = document.getElementsByClassName("gradeMembre");
+    for(i=0; i < gradeMembreElmt.length; i++){
+      if (gradeMembreElmt[i].textContent == "Banni"){
+        console.log(gradeMembreElmt[i].textContent)
+        gradeMembreElmt[i].parentElement.style.backgroundColor = "#d18b8b";
+      }
     }
-    console.log(gradeMembre.textContent);
 
 }//window.onload
 
@@ -47,7 +49,7 @@ $('#suppMembre').on('show.bs.modal', function (event) {
   });
 
   
-// Fonction qui ajoute la valuer à la modal lors de la modification de grade
+// Fonction qui ajoute la valeur à la modal lors de la modification de grade
   $('#modifierGrade').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var recipientName = button.data('membre_nom'); // Extract info from data-* attributes
