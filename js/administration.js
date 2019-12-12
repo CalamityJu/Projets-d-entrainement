@@ -9,6 +9,7 @@ window.onload = function() {
     //EventListeners sur les pages à afficher
     document.getElementById("admin_membres_link").addEventListener("click", afficherPageMembre);
     document.getElementById("admin_forum_link").addEventListener("click", afficherPageForum);
+    document.getElementById("afficher_liste_banni").addEventListener("click", afficherListeBanni);
 
     let gradeMembreElmt = document.getElementsByClassName("gradeMembre");
     for(i=0; i < gradeMembreElmt.length; i++){
@@ -59,3 +60,10 @@ $('#suppMembre').on('show.bs.modal', function (event) {
     modal.find('.modal-title').text('Modification du grade de ' + recipientName);
     modal.find('.modal-body input').val(recipientId);
   });
+
+  /**
+   * Fonction qui cache/affiche la liste des membres banni
+   */
+  function afficherListeBanni(){
+
+  }

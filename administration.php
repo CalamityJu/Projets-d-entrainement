@@ -135,15 +135,7 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-secondary">Obtenir la liste des bannis</button>
-
-    <div id="liste_des_bannis">
-        <ul>
-            <?php while ($banni = $bannis->fetch()) {?>
-                <li><?= $banni['banni_pseudo'];?></li>
-            <?php } ?>
-        </ul>
-    </div>
+    <button id="afficher_liste_banni" type="button" class="btn btn-secondary">Obtenir la liste des bannis</button>
 
     <div id="admin_forum_page">
         <h2>Coucou forum </h2>
