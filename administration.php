@@ -15,6 +15,7 @@
     $membres = $bdd->query('SELECT * FROM membres LEFT JOIN roles ON membres.role_id=roles.id ORDER BY membre_id DESC LIMIT 0,20');
     $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
     $bannis = $bdd->query('SELECT * FROM membres_bannis');
+    $forums = $bdd->query('SELECT * FROM forum_forum');
     
 ?>
 
@@ -155,7 +156,69 @@
         <!-- Page de gestion du forum-->
 
         <div id="admin_forum_page">
-            <h2>Coucou forum </h2>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Autorisation de voir</th>
+                        <th scope="col">Autorisation de poster</th>
+                        <th scope="col">Autorisation de créer topic</th>
+                        <th scope="col">Autorisation de poster des annonces</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php while ($forum = $forums->fetch()) {?>
+                    <tr id="ligneForum">
+                        <th scope="row"><?= $forum['forum_id']; ?></th>
+                        <td class="forumTitle"><?= $forum['forum_title'];?></td>
+                        <td class="forumDescription"><?= $forum['forum_description'];?></td>
+                        <td class="viewPermission"><?= $forum['auth_view'];?></td>
+                        <td class="postPermission"><?= $forum['auth_post'];?></td>
+                        <td class="topicPermission"><?= $forum['auth_topic'];?></td>
+                        <td class="annoncePermission"><?= $forum['auth_annonce'];?></td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierForum" data-forum_id="<?= $forum['forum_id'];?>" data-forum_titre="<?= $forum['forum_title'];?>">Modifier forum</button>
+                                    <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierPermissions" data-forum_view="<?= $forum['auth_view'];?>" data-forum_post="<?= $forum['auth_post'];?>" data-forum_topic="<?= $forum['auth_topic'];?>" data-forum_annonce="<?= $forum['auth_annonce'];?>" data-forum_id="<?= $forum['forum_id'];?>">Modifier permissions</button>
+                                    <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#suppForum" data-forum_id="<?= $forum['forum_id'];?>" data-forum_titre="<?= $forum['forum_title'];?>">Supprimer</button>
+                                </div>
+                            </div>
+                        </td>
+                        <?php } ?>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Modal suppression forum -->
+            <div class="modal fade" id="suppForum" tabindex="-1" role="dialog" aria-labelledby="suppForumLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="suppForumLabel">Suppression</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="function/suppression_forum.php" method="post">
+                        <div class="modal-body">
+                        <div id="avertissementSuppression"></div>
+                            <input type="hidden" name="forum_id" value="<?= $forum['forum_id'];?>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
