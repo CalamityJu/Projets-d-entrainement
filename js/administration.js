@@ -65,5 +65,22 @@ $('#suppMembre').on('show.bs.modal', function (event) {
    * Fonction qui cache/affiche la liste des membres banni
    */
   function afficherListeBanni(){
-
+    let gradeMembreElmt = document.getElementsByClassName("gradeMembre"),
+      button = document.getElementById("afficher_liste_banni"),
+      textButton = button.innerText;
+    if(textButton == "Obtenir la liste des bannis"){
+      for(i=0; i < gradeMembreElmt.length; i++){
+        if (gradeMembreElmt[i].textContent != "Banni"){
+          gradeMembreElmt[i].parentElement.style.display = "none";
+          button.innerText = "Afficher tous les membres";
+          console.log(gradeMembreElmt[i].parentElement);
+        }
+      }
+    } else {
+      for(i=0; i < gradeMembreElmt.length; i++){
+        gradeMembreElmt[i].parentElement.style.display = "table-row";
+        button.innerText = "Obtenir la liste des bannis";
+        console.log(gradeMembreElmt[i].parentElement);
+      }
+    }
   }
