@@ -73,14 +73,12 @@ $('#suppMembre').on('show.bs.modal', function (event) {
         if (gradeMembreElmt[i].textContent != "Banni"){
           gradeMembreElmt[i].parentElement.style.display = "none";
           button.innerText = "Afficher tous les membres";
-          console.log(gradeMembreElmt[i].parentElement);
         }
       }
     } else {
       for(i=0; i < gradeMembreElmt.length; i++){
         gradeMembreElmt[i].parentElement.style.display = "table-row";
         button.innerText = "Obtenir la liste des bannis";
-        console.log(gradeMembreElmt[i].parentElement);
       }
     }
   }

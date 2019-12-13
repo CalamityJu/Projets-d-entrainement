@@ -2,8 +2,6 @@
 
     include("template/debut.php"); // On démarre la session et on démarre la page. 
 
-    
-
     //On vérifie que l'utilisateur a les accès
     if(!isset($slug) || $slug !== "admin"){
         echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
@@ -164,7 +162,7 @@
 
     <!-- Fichiers JS -->
     <script src="js/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/popper.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/administration.js"></script>
