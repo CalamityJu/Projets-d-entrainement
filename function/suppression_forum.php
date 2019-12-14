@@ -8,7 +8,7 @@
     } 
 
     if(isset($_POST['forum_id']) && !empty($_POST['forum_id'])){
-        //Supprimer le membre
+        //Supprimer le forum
         $req = $bdd->prepare('DELETE FROM forum_forum WHERE forum_id = ?');
         $req->execute(array($_POST['forum_id']));
         $req->closeCursor();
