@@ -28,10 +28,10 @@
         <!--Menu contenant les différentes pages de la page d'administration-->
         <ul class="nav">
             <li class="nav-item">
-                <a id="admin_membres_link" class="nav-link active" href="#">Membres</a>
+                <a id="admin_membres_link" class="nav-link active" href="#admin_membres_page">Membres</a>
             </li>
             <li class="nav-item">
-                <a id="admin_forum_link" class="nav-link" href="#">Forum</a>
+                <a id="admin_forum_link" class="nav-link" href="#admin_forum_page">Forum</a>
             </li>
         </ul>
 
@@ -110,8 +110,8 @@
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </div>
+                        </div>
                     </form>
-                    </div>
                 </div>
             </div>
 
@@ -191,8 +191,8 @@
                                 </div>
                             </div>
                         </td>
-                        <?php } ?>
                     </tr>
+                <?php } ?>
                 </tbody>
             </table>
 
@@ -208,15 +208,15 @@
                     </div>
                     <form action="function/suppression_forum.php" method="post">
                         <div class="modal-body">
-                        <div id="avertissementSuppression"></div>
+                        <div id="avertissementSuppressionForum"></div>
                             <input type="hidden" name="forum_id" value="<?= $forum['forum_id'];?>">
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </div>
+                        </div>
                     </form>
-                    </div>
                 </div>
             </div>
         </div>
