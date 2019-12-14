@@ -27,8 +27,7 @@
                         Actions
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierForum" data-forum_id="<?= $forum['forum_id'];?>" data-forum_titre="<?= $forum['forum_title'];?>">Modifier forum</button>
-                        <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierPermissions" data-forum_view="<?= $forum['auth_view'];?>" data-forum_post="<?= $forum['auth_post'];?>" data-forum_topic="<?= $forum['auth_topic'];?>" data-forum_annonce="<?= $forum['auth_annonce'];?>" data-forum_id="<?= $forum['forum_id'];?>">Modifier permissions</button>
+                        <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#modifierForum" data-forum_id="<?= $forum['forum_id'];?>" data-forum_title="<?= $forum['forum_title'];?>" data-forum_description="<?= $forum['forum_description'];?>">Modifier forum</button>
                         <button type="button" class="dropdown-item my-0" data-toggle="modal" data-target="#suppForum" data-forum_id="<?= $forum['forum_id'];?>" data-forum_titre="<?= $forum['forum_title'];?>">Supprimer</button>
                     </div>
                 </div>
@@ -41,7 +40,100 @@
 <button id="ajouter_forum" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#ajoutForum">Ajouter forum</button>
 
 
-
+<!-- Modal modifier forum -->
+<div class="modal fade" id="modifierForum" tabindex="-1" role="dialog" aria-labelledby="modifForumLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modifForumLabel">Modifier forum</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="function/modification_forum.php" method="post">
+            <div class="modal-body">
+                <input id="forum_id" type="hidden" name="forum_id" value="<?= $forum['forum_id'];?>">
+                <div class="form-group">
+                    <label for="forum_title">Titre du forum</label>
+                    <input type="text" class="form-control" id="title_forum" name="forum_title" required>
+                </div>
+                <div class="form-group">
+                    <label for="forum_description">Description</label>
+                    <input type="text" class="form-control" id="description_forum" name="forum_description" required>
+                </div>
+                <div class="form-group">
+                    <label for="autorisation_view">Autorisation minimale pour voir le forum</label>
+                    <select class="form-control" id="autorisation_view" name="autorisation_view">
+                        <?php 
+                        $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
+                        while ($grade = $grades->fetch()) {
+                            if($grade['slug'] !== "ban"){
+                                if($grade['slug'] == "registered"){ ?>
+                                    <option value="<?=$grade['level']?>" selected><?=$grade['name']?></option>
+                                <?php }else { ?>
+                                    <option value="<?=$grade['level']?>"><?=$grade['name']?></option>
+                                <?php }
+                            }
+                        } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="autorisation_post">Autorisation minimale pour répondre à un post dans le forum</label>
+                    <select class="form-control" id="autorisation_post" name="autorisation_post">
+                        <?php 
+                        $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
+                        while ($grade = $grades->fetch()) {
+                            if($grade['slug'] !== "ban"){
+                                if($grade['slug'] == "member"){ ?>
+                                    <option value="<?=$grade['level']?>" selected><?=$grade['name']?></option>
+                                <?php }else { ?>
+                                    <option value="<?=$grade['level']?>"><?=$grade['name']?></option>
+                                <?php }
+                            }
+                        } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="autorisation_topic">Autorisation minimale pour créer un nouveau sujet dans le forum</label>
+                    <select class="form-control" id="autorisation_topic" name="autorisation_topic">
+                        <?php 
+                        $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
+                        while ($grade = $grades->fetch()) {
+                            if($grade['slug'] !== "ban"){
+                                if($grade['slug'] == "member"){ ?>
+                                    <option value="<?=$grade['level']?>" selected><?=$grade['name']?></option>
+                                <?php }else { ?>
+                                    <option value="<?=$grade['level']?>"><?=$grade['name']?></option>
+                                <?php }
+                            }
+                        } ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="autorisation_annonce">Autorisation minimale pour créer une annonce dans le forum</label>
+                    <select class="form-control" id="autorisation_annonce" name="autorisation_annonce">
+                        <?php 
+                        $grades = $bdd->query('SELECT * FROM roles ORDER BY id DESC');
+                        while ($grade = $grades->fetch()) {
+                            if($grade['slug'] !== "ban"){
+                                if($grade['slug'] == "modo"){ ?>
+                                    <option value="<?=$grade['level']?>" selected><?=$grade['name']?></option>
+                                <?php }else { ?>
+                                    <option value="<?=$grade['level']?>"><?=$grade['name']?></option>
+                                <?php }
+                            }
+                        } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div> <!-- Fin modal modifier forum-->
 
 <!-- Modal suppression forum -->
 <div class="modal fade" id="suppForum" tabindex="-1" role="dialog" aria-labelledby="suppForumLabel" aria-hidden="true">

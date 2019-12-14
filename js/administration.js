@@ -36,6 +36,7 @@ function afficherPageForum(){
     pageMembre.style.display="none";
 }
 
+
 //Fonction qui ajoute la valeur à la modal lors de la suppression de membre
 $('#suppMembre').on('show.bs.modal', function (event) {
     let button = $(event.relatedTarget); // Button that triggered the modal
@@ -47,6 +48,7 @@ $('#suppMembre').on('show.bs.modal', function (event) {
     modal.find('.modal-body input').val(recipientId);
     modal.find('.modal-body #avertissementSuppression').text('Vous êtes sur le point de supprimer ' + recipientName +". Cette action est irréversible.");
   });
+
   
 // Fonction qui ajoute la valeur à la modal lors de la modification de grade
   $('#modifierGrade').on('show.bs.modal', function (event) {
@@ -58,6 +60,8 @@ $('#suppMembre').on('show.bs.modal', function (event) {
     modal.find('.modal-title').text('Modification du grade de ' + recipientName);
     modal.find('.modal-body input').val(recipientId);
   });
+
+
 
   /**
    * Fonction qui cache/affiche la liste des membres banni
@@ -93,4 +97,18 @@ $('#suppForum').on('show.bs.modal', function (event) {
   modal.find('#suppForumLabel').text('Suppression de ' + forumName);
   modal.find('.modal-body input').val(forumId);
   modal.find('.modal-body #avertissementSuppressionForum').text('Vous êtes sur le point de supprimer ' + forumName +". Cette action est irréversible.");
+});
+
+// Fonction qui ajoute la valeur à la modal lors de la modification de forum
+$('#modifierForum').on('show.bs.modal', function (event) {
+  let button = $(event.relatedTarget);
+  let forumName = button.data('forum_title'); // Extract info from data-* attributes
+  let forumDescription = button.data('forum_description');
+  let forumId = button.data('forum_id');
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  let modal = $(this);
+  modal.find('.modal-title').text('Modification du forum ' + forumName);
+  modal.find('.modal-body #forum_id').val(forumId);
+  modal.find('.modal-body #title_forum').val(forumName);
+  modal.find('.modal-body #description_forum').val(forumDescription);
 });
