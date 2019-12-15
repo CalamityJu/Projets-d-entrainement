@@ -198,4 +198,300 @@ nav #infosProfil img {
 #administration_page #volet {
   display: none;
 }
+
+.clearfix::before {
+  content: " ";
+  display: block;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+#forum {
+  font-family: 'Open Sans Light', sans-serif;
+  font-size: 14px;
+  color: #989c9e;
+  line-height: 1.42857143;
+}
+
+#forum header::before {
+  content: " ";
+  display: table;
+}
+
+#forum header::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+#forum header .banner-container {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+#forum header .banner-container .banner {
+  max-height: 278px;
+  height: 278px;
+  width: 100%;
+  position: relative;
+}
+
+#forum header .banner-container .banner .loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+#forum header .banner-container .banner ul {
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  list-style: none;
+}
+
+#forum header .banner-container .banner ul li {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  visibility: visible;
+  left: 0px;
+  top: 0px;
+  z-index: 20;
+  opacity: 1;
+  position: absolute;
+}
+
+#forum header .banner-container .banner ul li .slotholder {
+  width: 100%;
+  height: 100%;
+}
+
+#forum header .banner-container .banner ul li img {
+  width: 100%;
+  position: absolute;
+  top: -40%;
+}
+
+#forum header #bg-img {
+  background-image: url("../img/coucher-soleil.jpg");
+}
+
+#forum section {
+  background-color: #ecf0f1;
+  border-top: solid 1px #e0e4e5;
+}
+
+#forum section #paginationMenu {
+  width: 1170px;
+}
+
+#forum section #paginationMenu::before {
+  content: " ";
+  display: table;
+}
+
+#forum section #paginationMenu::after {
+  clear: both;
+}
+
+#forum section #paginationMenu .row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+#forum section #paginationMenu .row::before {
+  content: " ";
+  display: table;
+}
+
+#forum section #paginationMenu .row::after {
+  clear: both;
+}
+
+#forum section #paginationMenu .row .prevnext {
+  font-size: 26px;
+  color: #cfd5d7;
+  display: block;
+  margin-top: 11px;
+}
+
+#forum section #paginationMenu .row .prevnext.last {
+  margin-left: 20px;
+}
+
+#forum section #paginationMenu .row .paginationForum {
+  margin: 19px auto;
+}
+
+#forum section #paginationMenu .row .paginationForum li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+#forum section #paginationMenu .row .paginationForum li a {
+  min-width: 24px;
+  height: 24px;
+  font-size: 14px;
+  font-family: 'Open Sans Semibold', sans-serif;
+  color: #fff;
+  background-color: #cfd5d7;
+  border-radius: 2px;
+  display: block;
+  padding: 0 8px;
+  line-height: 24px;
+}
+
+#forum section #paginationMenu .row .paginationForum li a:active {
+  color: #363838;
+  background-color: #fff;
+  -webkit-box-shadow: 0 1px 2px #c9cccd;
+          box-shadow: 0 1px 2px #c9cccd;
+  text-decoration: none;
+}
+
+#forum section .post {
+  background-color: #fff;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 2px #c9cccd;
+          box-shadow: 0 1px 2px #c9cccd;
+  margin-bottom: 20px;
+}
+
+#forum section .post .wrap-ut {
+  width: 85%;
+}
+
+#forum section .post .wrap-ut .userinfo {
+  width: 15%;
+  padding: 20px 0px 15px 15px;
+}
+
+#forum section .post .wrap-ut .userinfo .avatar {
+  position: relative;
+  width: 37px;
+  margin-left: 5px;
+}
+
+#forum section .post .wrap-ut .userinfo .avatar .img {
+  border-radius: 50%;
+}
+
+#forum section .post .wrap-ut .userinfo .avatar .status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  border-radius: 50%;
+  border: solid 2px #fff;
+}
+
+#forum section .post .wrap-ut .userinfo .avatar .status.active {
+  background-color: #80d3ab;
+}
+
+#forum section .post .wrap-ut .userinfo .avatar .status.inactive {
+  background-color: #f27777;
+}
+
+#forum section .post .wrap-ut .userinfo .icons {
+  width: 48px;
+  border-top: solid 1px #f1f1f1;
+  margin-top: 12px;
+  padding-top: 7px;
+}
+
+#forum section .post .wrap-ut .userinfo .icons img {
+  width: 24px;
+  height: 24px;
+}
+
+#forum section .post .wrap-ut .posttext {
+  width: 85%;
+  padding-right: 30px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  color: #989c9e;
+  font-size: 14px;
+  font-family: 'Open Sans Light', sans-serif;
+  line-height: 25px;
+}
+
+#forum section .post .wrap-ut .posttext h2 {
+  color: #363838;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#forum section .post .wrap-ut .posttext h2 a {
+  color: #363838;
+}
+
+#forum section .post .postinfo {
+  width: 15%;
+  border-left: solid 1px #f1f1f1;
+}
+
+#forum section .post .postinfo .comments {
+  border-bottom: solid 1px #f1f1f1;
+  padding: 18px 0 25px 0;
+}
+
+#forum section .post .postinfo .comments .commentbg {
+  background-color: #bdc3c7;
+  border-radius: 2px;
+  display: inline-block;
+  padding: 12px 17px;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Open Sans Bold', sans-serif;
+  position: relative;
+}
+
+#forum section .post .postinfo .comments .commentbg .mark {
+  width: 11px;
+  height: 11px;
+  background-color: #bdc3c7;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: -5px;
+  -webkit-transform: translateX(-50%) rotate(45deg);
+          transform: translateX(-50%) rotate(45deg);
+}
+
+#forum section .post .postinfo .views {
+  border-bottom: solid 1px #f1f1f1;
+  color: #9da6aa;
+  font-size: 12px;
+  font-family: 'Open Sans Regular', sans-serif;
+  line-height: 29px;
+}
+
+#forum section .post .postinfo .views i {
+  font-size: 14px;
+}
+
+#forum section .post .postinfo .time {
+  color: #9da6aa;
+  font-size: 12px;
+  font-family: 'Open Sans Regular', sans-serif;
+  line-height: 29px;
+}
+
+#forum section .post .postinfo .time i {
+  font-size: 14px;
+}
 /*# sourceMappingURL=profil.css.map */

@@ -205,3 +205,259 @@ nav {
         display: none;
     }
 }
+
+
+        //FORUM.PHP
+
+//tout les clearfix
+.clearfix{
+    &::before{
+        content: " ";
+        display: block;
+    }
+    &::after{
+        clear: both;
+    }
+}
+
+#forum{
+    font-family: 'Open Sans Light', sans-serif;
+    font-size: 14px;
+    color: #989c9e;
+    line-height: 1.42857143;
+    header{
+        &::before{
+            content: " ";
+            display: table;
+        }
+        &::after{
+            clear: both;
+            content: " ";
+            display: table;
+        }
+        .banner-container{
+            width: 100%;
+            position: relative;
+            overflow: visible;
+            .banner{
+                max-height: 278px; 
+                height: 278px;
+                width: 100%;
+                position: relative;
+                .loader{
+                    display:none;
+                    position: absolute;
+                    top:0;
+                    left: 50%;
+                    transform: translate(-50%);                   
+                }
+                ul{
+                    display:block;
+                    overflow:hidden;
+                    width: 100%;
+                    height: 100%;
+                    max-height: none;
+                    list-style: none;
+                    li{
+                        width: 100%;
+                        height: 100%;
+                        overflow:hidden;
+                        visibility: visible;
+                        left:0px;
+                        top: 0px;
+                        z-index: 20;
+                        opacity:1;
+                        position: absolute;
+                        .slotholder{
+                            width: 100%;
+                            height: 100%;
+                        }
+                        img{
+                            width: 100%;
+                            position: absolute;
+                            top: -40%;
+                        }
+                    }
+                }
+            }
+        }
+        #bg-img{
+            background-image: url("../img/coucher-soleil.jpg");
+        }
+    }
+    section{
+        background-color: #ecf0f1;
+        border-top: solid 1px #e0e4e5;
+        #paginationMenu{
+            width:1170px;
+            &::before{
+                content: " ";
+                display: table;
+            }
+            &::after{
+                clear: both;
+            }
+            .row{
+                margin-left: -15px;
+                margin-right: -15px;
+                &::before{
+                    content:" ";
+                    display: table;
+                }
+                &::after{
+                    clear: both;
+                }
+                .prevnext{
+                    font-size: 26px;
+                    color: #cfd5d7;
+                    display: block;
+                    margin-top: 11px;
+                    &.last{
+                        margin-left: 20px;
+                    }
+
+                }
+                .paginationForum{
+                    margin: 19px auto;
+                    li{
+                        list-style: none;
+                        display: inline-block;
+                        margin-left: 20px;
+                        a{
+                            min-width: 24px;
+                            height: 24px;
+                            font-size: 14px;
+                            font-family: 'Open Sans Semibold', sans-serif;
+                            color: #fff;
+                            background-color: #cfd5d7;
+                            border-radius: 2px;
+                            display: block;
+                            padding: 0 8px;
+                            line-height: 24px;
+                            &:active{
+                                color: #363838;
+                                background-color: #fff;
+                                box-shadow: 0 1px 2px #c9cccd;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .post{
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow:0 1px 2px #c9cccd;
+            margin-bottom: 20px;
+            .wrap-ut{
+                width: 85%;
+                .userinfo{
+                    width: 15%;
+                    padding: 20px 0px 15px 15px;
+                    .avatar{
+                        position: relative;
+                        width: 37px;
+                        margin-left: 5px;
+                        .img{
+                            border-radius: 50%;
+                        }
+                        .status{
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 12px;
+                            height: 12px;
+                            line-height: 12px;
+                            border-radius: 50%;
+                            border: solid 2px #fff;
+                            &.active{
+                                background-color: #80d3ab;
+                            }
+                            &.inactive{
+                                background-color: #f27777;
+                            }
+                        }
+                    }
+                    .icons{
+                        width: 48px;
+                        border-top: solid 1px #f1f1f1;
+                        margin-top: 12px;
+                        padding-top: 7px;
+                        img{
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+                }
+                .posttext{
+                    width: 85%;
+                    padding-right: 30px;
+                    padding-top: 20px;
+                    padding-bottom: 15px;
+                    color: #989c9e;
+                    font-size: 14px;
+                    font-family: 'Open Sans Light', sans-serif;
+                    line-height: 25px;
+                    h2{
+                        color: #363838;
+                        font-size: 18px;
+                        font-family: 'Open Sans', sans-serif;
+                        margin-top: 10px;
+                        margin-bottom: 10px;
+                        a{
+                            color: #363838;
+                        }
+                    }
+                }
+            }
+            .postinfo{
+                width: 15%;
+                border-left: solid 1px #f1f1f1;
+                .comments{
+                    border-bottom: solid 1px #f1f1f1;
+                    padding: 18px 0 25px 0;
+                    .commentbg{
+                        background-color: #bdc3c7;
+                        border-radius: 2px;
+                        display: inline-block;
+                        padding: 12px 17px;
+                        color: #fff;
+                        font-size: 14px;
+                        font-family: 'Open Sans Bold', sans-serif;
+                        position: relative;
+                        .mark{
+                            width: 11px;
+                            height: 11px;
+                            background-color: #bdc3c7;
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            margin-bottom: -5px;
+                            transform: translateX(-50%) rotate(45deg);
+                        }
+                    }
+                }
+                .views{
+                    border-bottom: solid 1px #f1f1f1;
+                    color: #9da6aa;
+                    font-size: 12px;
+                    font-family: 'Open Sans Regular', sans-serif;
+                    line-height: 29px;
+                    i{
+                        font-size: 14px;
+                    }
+                }
+                .time{
+                    color: #9da6aa;
+                    font-size: 12px;
+                    font-family: 'Open Sans Regular', sans-serif;
+                    line-height: 29px;
+                    i{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
