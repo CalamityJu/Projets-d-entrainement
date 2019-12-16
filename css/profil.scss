@@ -459,5 +459,85 @@ nav {
                 }
             }
         }
+        .sidebarblock{
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px #c9cccd;
+            margin-bottom: 20px;
+            h3{
+                color: #363838;
+                font-size: 14px;
+                font-family: 'Open Sans Bold', sans-serif;
+                padding: 20px;
+            }
+            .divline{
+                height: 1px;
+                line-height: 1px;
+                border-bottom: solid 1px #f1f1f1;
+            }
+            .blocktxt{
+                font-size: 14px;
+                color:#36383838;
+                font-family: 'Open Sans Light', sans-serif;
+                padding: 20px;
+                .cats{
+                    li{
+                        list-style: none;
+                        display: block;
+                        line-height: 30px;
+                        margin: 0;
+                        padding: 0;
+                        a{
+                            font-size: 14px;
+                            color: #363838;
+                            font-family: 'Open Sans Light', sans-serif;
+                            line-height: 30px;
+                            .badge{
+                                background-color: #bdc3c7;
+                                font-size: 12px;
+                                color: #fff;
+                                font-family: 'Open Sans Bold', sans-serif;
+                                margin-top: 7px;
+                            }
+                        }
+                    }
+                }
+                .poll{
+                    .progress{
+                        background-color: #ecf0f1;
+                        height: 31px;
+                        border-radius: 2px;
+                        box-shadow: none;
+                        .progress-bar{
+                            font-size: 14px;
+                            color: #fff;
+                            font-family: 'Open Sans Bold', sans-serif;
+                            line-height: 31px;
+                            padding-left: 10px;
+                            box-shadow: none;
+                            &.color1{
+                                background-color: #9b59b6;
+                            }
+                            &.color2{
+    
+                            }
+                        }
+                    }
+                    .chbox{
+                        vertical-align: top;
+                        width: 50px;
+                        input[type="radio"]{
+                            display: none;
+                        }
+                        label{
+                            display: inline-block;
+                            width: 31px;
+                            height: 31px;
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
 }

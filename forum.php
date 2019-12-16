@@ -164,9 +164,9 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="sidebarblock">
-                        <h3>Categories</h3>
+                        <h3 class="m-0">Categories</h3>
                         <div class="blocktxt">
-                            <ul class="cats">
+                            <ul class="cats m-0 p-0">
                                 <li>
                                     <a href="#">
                                         Text
@@ -183,16 +183,16 @@
                         </div>
                     </div>
                     <div class="sidebarblock">
-                        <h3>sondage du moment</h3>
+                        <h3 class="m-0">sondage du moment</h3>
                         <div class="blocktxt">
                             <p>A quel jeux jouez-vous en ce moment ?</p>
                             <form action="#" class="form" method="post">
-                                <table class="poll">
+                                <table class="poll w-100">
                                     <tbody>
                                         <tr>
                                             <td>
                                                 <div class="progress">
-                                                    <div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Choix 1</div>
+                                                    <div class="progress-bar color1 text-left" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Choix 1</div>
                                                 </div>
                                             </td>
                                             <td class="chbox">
@@ -203,7 +203,7 @@
                                         <tr>
                                             <td>
                                                 <div class="progress">
-                                                    <div class="progress-bar color2" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Choix 2</div>
+                                                    <div class="progress-bar color2 text-left" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Choix 2</div>
                                                 </div>
                                             </td>
                                             <td class="chbox">
@@ -214,7 +214,7 @@
                                         <tr>
                                             <td>
                                                 <div class="progress">
-                                                    <div class="progress-bar color3" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Choix 3</div>
+                                                    <div class="progress-bar color3 text-left" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Choix 3</div>
                                                 </div>
                                             </td>
                                             <td class="chbox">
@@ -229,7 +229,7 @@
                         </div>
                     </div>
                     <div class="sidebarblock">
-                        <h3>Derniers articles</h3>
+                        <h3 class="m-0">Derniers articles</h3>
                         <div class="blocktxt">
                             <a href="#">Article 1</a>
                         </div>
@@ -342,6 +342,6 @@
 
 http://forum.azyrusthemes.com/index.html
 
-Tu t'es arrêté au div class col-lg-4 col-md-4 dans la classe row du deuxième container (aside sur le côté)
+Tu t'es arrêté au label des sidebackblock (radio checkbox)
 
 -->
