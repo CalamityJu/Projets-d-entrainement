@@ -3,6 +3,11 @@
 ?>
 
 <div id="forum">
+    <div class="menu_forum">
+        <?php
+            include("template/menu.php"); // On insère le menu et on démarre la session. 
+        ?>
+    </div>
     <header class="container-fluid m-auto p-0">
         <div class="banner-container p-0 d-none d-md-block">
             <div class="banner">
@@ -15,14 +20,27 @@
                 <div class="loader"><img src="img/loader.gif" alt="Loader"></div>
             </div>
         </div>
-        <?php
-            include("template/menu.php"); // On insère le menu et on démarre la session. 
-        ?>
     </header>
     <section class="content">
-        <div id="paginationMenu" class="container p-0">
+        <div class="container mt-2">
             <div class="row">
-                <div class="col-lg-8 col-xs-12 col-md-8 d-flex">
+                <div class="col-8 m-auto">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="forum.php">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Édition</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-4 my-auto">
+                    <button class="btn btn-primary float-right">Nouveau sujet</button>
+                </div>
+            </div>
+            
+        </div>
+        <div id="paginationMenu" class="container p-0">
+            <div class="row justify-content-center justify-content-lg-start">
+                <div class="col-lg-8 col-sm-12 col-md-8 d-flex">
                     <div class="pull-left">
                         <a href="#" class="prevnext">
                             <i class="fa fa-angle-left"></i>
@@ -83,7 +101,7 @@
         </div>
         <div class="container p-0">
             <div class="row">
-                <div class="col-lg-8 col-md-8">
+                <div class="col-lg-8">
                     <div class="post d-flex">
                         <div class="wrap-ut pull-left d-flex">
                             <div class="userinfo pull-left">
@@ -162,7 +180,68 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4">
+                <div id="paginationMenu2" class="container d-lg-none">
+                    <div class="row justify-content-center justify-content-lg-start">
+                        <div class="col-lg-8 col-sm-12 col-md-8 d-flex ">
+                            <div class="pull-left">
+                                <a href="#" class="prevnext">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </div>
+                            <div class="pull-left">
+                                <ul class="paginationForum p-0">
+                                    <li class="d-none d-xl-inline-block">
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li class="d-none d-lg-inline-block">
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li class="d-none d-lg-inline-block">
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li class="d-none d-sm-inline-block">
+                                        <a href="#">4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">6</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="active">7</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">8</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">9</a>
+                                    </li>
+                                    <li class="d-none d-sm-inline-block">
+                                        <a href="#">10</a>
+                                    </li>
+                                    <li class="d-none d-lg-inline-block">
+                                        <a href="#">11</a>
+                                    </li>
+                                    <li class="d-none d-lg-inline-block">
+                                        <a href="#">12</a>
+                                    </li>
+                                    <li class="d-none d-xl-inline-block">
+                                        <a href="#">1586</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pull-left">
+                                <a href="#" class="prevnext last">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0">
                     <div class="sidebarblock">
                         <h3 class="m-0">Categories</h3>
                         <div class="blocktxt">
@@ -240,26 +319,26 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div id="paginationMenu3" class="container p-0 d-none d-lg-block">
             <div class="row">
-                <div class="col-lg-8 col-xs-12 col-md-8">
+                <div class="col-lg-8 col-sm-12 col-md-8 d-flex">
                     <div class="pull-left">
                         <a href="#" class="prevnext">
                             <i class="fa fa-angle-left"></i>
                         </a>
                     </div>
                     <div class="pull-left">
-                        <ul class="paginationForum">
-                            <li class="hidden-xs">
+                        <ul class="paginationForum p-0">
+                            <li class="d-none d-xl-inline-block">
                                 <a href="#">1</a>
                             </li>
-                            <li class="hidden-xs">
+                            <li class="d-none d-lg-inline-block">
                                 <a href="#">2</a>
                             </li>
-                            <li class="hidden-xs">
+                            <li class="d-none d-lg-inline-block">
                                 <a href="#">3</a>
                             </li>
-                            <li class="hidden-xs">
+                            <li class="d-none d-sm-inline-block">
                                 <a href="#">4</a>
                             </li>
                             <li>
@@ -271,25 +350,23 @@
                             <li>
                                 <a href="#" class="active">7</a>
                             </li>
+
                             <li>
                                 <a href="#">8</a>
                             </li>
-                            <li class="hidden-xs">
+                            <li>
                                 <a href="#">9</a>
                             </li>
-                            <li class="hidden-xs">
+                            <li class="d-none d-sm-inline-block">
                                 <a href="#">10</a>
                             </li>
-                            <li class="hidden-xs hidden-md">
+                            <li class="d-none d-lg-inline-block">
                                 <a href="#">11</a>
                             </li>
-                            <li class="hidden-xs hidden-md">
+                            <li class="d-none d-lg-inline-block">
                                 <a href="#">12</a>
                             </li>
-                            <li class="hidden-xs hidden-sm hidden-md">
-                                <a href="#">13</a>
-                            </li>
-                            <li>
+                            <li class="d-none d-xl-inline-block">
                                 <a href="#">1586</a>
                             </li>
                         </ul>
@@ -306,28 +383,28 @@
     </section>
     <footer>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-1 col-xs-3 col-sm-2 logo">
+            <div class="row text-center text-sm-left">
+                <div class="col-lg-1 col-sm-2 logo">
                     <a href="#">
                         <img src="" alt="Logo d'Imperacube">
                     </a>
                 </div>
-                <div class="col-lg-8 col-xs-9 col-sm-5">Copyrights 2019, imperacube.fr</div>
-                <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
-                    <ul class="socialicons">
+                <div class="col-lg-8 col-sm-6 text-sm-center text-lg-left pl-lg-5">Copyrights 2019, imperacube.fr</div>
+                <div class="col-lg-3 col-sm-4 sociconcent text-sm-right">
+                    <ul class="socialicons p-0 mb-0">
                         <li>
                             <a href="#facebook">
-                                <i class="fa fa-facebook-square"></i>
+                                <i class="fab fa-facebook-square"></i>
                             </a>
                         </li>
                         <li>
                             <a href="#twitter">
-                                <i class="fa fa-twitter"></i>
+                                <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li>
                             <a href="#youtube">
-                                <i class="fa fa-youtube"></i>
+                                <i class="fab fa-youtube"></i>
                             </a>
                         </li>
                     </ul>

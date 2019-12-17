@@ -288,7 +288,7 @@ nav {
     section{
         background-color: #ecf0f1;
         border-top: solid 1px #e0e4e5;
-        #paginationMenu{
+        #paginationMenu, #paginationMenu2, #paginationMenu3{
             width:1170px;
             &::before{
                 content: " ";
@@ -344,6 +344,12 @@ nav {
                     }
                 }
             }
+        }
+        .separation{
+            width: 100%;
+            height: 1px;
+            background-color: #c9cccd;
+            margin-bottom: 20px;
         }
         .post{
             background-color: #fff;
@@ -477,7 +483,7 @@ nav {
             }
             .blocktxt{
                 font-size: 14px;
-                color:#36383838;
+                color:#363838;
                 font-family: 'Open Sans Light', sans-serif;
                 padding: 20px;
                 .cats{
@@ -508,6 +514,7 @@ nav {
                         height: 31px;
                         border-radius: 2px;
                         box-shadow: none;
+                        margin-bottom: 20px;
                         .progress-bar{
                             font-size: 14px;
                             color: #fff;
@@ -519,7 +526,19 @@ nav {
                                 background-color: #9b59b6;
                             }
                             &.color2{
-    
+                                background-color: #3498db;
+                            }
+                            &.color3{
+                                background-color: #e67e22;
+                            }
+                            &.color4{
+                                background-color: #22e65d;
+                            }
+                            &.color5{
+                                background-color: #e62222;
+                            }
+                            &.color6{
+                                background-color: #2236e6;
                             }
                         }
                     }
@@ -533,11 +552,52 @@ nav {
                             display: inline-block;
                             width: 31px;
                             height: 31px;
+                            background: url('../assets/radio.jpg') 0 0 no-repeat;
+                            vertical-align: middle;
+                            cursor: pointer;
+                            margin-bottom: 0;
+                            margin-left: 20px;
                             
                         }
                     }
                 }
+                p{
+                    &.small{
+                        font-size: 12px;
+                    }
+                }
+                a{
+                    color: #363838;
+                }
             }
+
+        }
+    }
+    footer{
+        color: #363838;
+        height: 32px;
+        line-height: 32px;
+        @media(min-width: 576px){
+            line-height: 69px;
+            height: 69px;
+        }
+        .logo{
+            line-height: normal;
+        }
+        .socialicons{
+           li{
+               display: inline-block;
+               list-style: none;
+               font-size: 18px;
+               color: #bdc3c7;
+               margin-left: 15px;
+               a{
+                   color: #bdc3c7;
+                   &:hover{
+                       color: #363838;
+                   }
+               }
+           }
         }
     }
 }
