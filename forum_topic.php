@@ -8,8 +8,8 @@
     
 
     //On vérifie que l'utilisateur a les accès
-    var_dump("Permission : ".$user_permission);
-        if($user_permission < $categorie['auth_view']){
+    var_dump('$user_permission = ' .$user_permission);
+        if($user_permission < $view_auth){
         echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
         echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès.</p>";
         echo "<p>Si vous êtes censé avoir les accès, essayez de vous reconnecter.</p>";

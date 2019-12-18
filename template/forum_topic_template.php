@@ -3,8 +3,7 @@
 
     $topics = get_topics($bdd, $categorie_id);
     $view_auth = get_view_auth($bdd, $categorie_id);
-    var_dump ('view_auth = ' . $view_auth);
-    die();
+    var_dump('$view_auth = '. $view_auth . '<br/>');
 
     //Toutes les fonctions
 
@@ -34,8 +33,8 @@
         $req = $bdd->prepare('SELECT * FROM forum_forum WHERE forum_id = :categorie_id');
         $req->execute(array('categorie_id'=>$categorie_id));
         $data = $req->fetch();
-        $req->closeCursor();
-        return $data['view_auth'];
+        var_dump('$data = ' . $data);
+        return $data['auth_view'];
     }
 
     function read_aut($categorie_id){
