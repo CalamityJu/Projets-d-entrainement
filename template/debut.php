@@ -61,6 +61,13 @@
             header('Location:index.php');
         }
     }
+
+    //On attribue un permission_lvl de base aux visiteurs s'ils n'en ont pas encore
+    if(empty($permission_lvl)){
+        $permission_lvl = 0;
+    }
+
+    $user_permission = $permission_lvl;
     
     
     ?>

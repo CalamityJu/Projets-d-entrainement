@@ -220,7 +220,7 @@ nav {
     }
 }
 
-#forum{
+#forum_topic, #forum{
     font-family: 'Open Sans Light', sans-serif;
     font-size: 14px;
     color: #989c9e;
@@ -459,6 +459,57 @@ nav {
                     font-size: 12px;
                     font-family: 'Open Sans Regular', sans-serif;
                     line-height: 29px;
+                    i{
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .category{
+            background-color: #fff;
+            border-radius: 2px;
+            box-shadow:0 1px 2px #c9cccd;
+            margin-bottom: 20px;
+            .wrap-ut{
+                width: 85%;
+                &:hover{
+                    text-decoration: none;
+                    h2{
+                        color: #18BC9C;
+                    }
+                }
+            }
+            .cattext{
+                width: 85%;
+                padding-right: 30px;
+                padding-top: 20px;
+                padding-bottom: 15px;
+                color: #989c9e;
+                font-size: 14px;
+                font-family: 'Open Sans Light', sans-serif;
+                line-height: 25px;
+                h2{
+                    font-size: 22px;
+                    font-family: 'Open Sans', sans-serif;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    color: #363838;
+                }
+            }
+            .catinfo{
+                width: 15%;
+                border-left: solid 1px #f1f1f1;
+                position: relative;
+                .time{
+                    color: #9da6aa;
+                    font-size: 12px;
+                    font-family: 'Open Sans Regular', sans-serif;
+                    line-height: 29px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: 10px;
+                    width: 100%;
                     i{
                         font-size: 14px;
                     }
