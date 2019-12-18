@@ -6,8 +6,9 @@
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     } 
+
     
-    if(!empty($_POST['forum_title']) && !empty($_POST['forum_description']) && !empty($_POST['autorisation_view']) && !empty($_POST['autorisation_post']) && !empty($_POST['autorisation_topic']) && !empty($_POST['autorisation_annonce']) && !empty($_POST['forum_id'])){
+    if(!empty($_POST['forum_title']) && isset($_POST['forum_description']) && isset($_POST['autorisation_view']) && isset($_POST['autorisation_post']) && isset($_POST['autorisation_topic']) && isset($_POST['autorisation_annonce']) && !empty($_POST['forum_id'])){
         $title = filter_input(INPUT_POST, 'forum_title', FILTER_SANITIZE_STRING);
         $description = filter_input(INPUT_POST, 'forum_description', FILTER_SANITIZE_STRING);
         $view = intval(filter_input(INPUT_POST, 'autorisation_view', FILTER_SANITIZE_STRING));
@@ -29,6 +30,8 @@
         header('Location:'.$_SERVER['HTTP_REFERER']);
         die();
     } else {
+        var_dump($_POST);
+    die();
         echo "Il y a eu une erreur lors de l'ajout du forum.";
     } 
 ?>

@@ -2,8 +2,10 @@
     //On cherche toutes les catégories
 
     $topics = get_topics($bdd, $categorie_id);
-    $view_auth = get_view_auth($bdd, $categorie_id);
-    var_dump('$view_auth = '. $view_auth . '<br/>');
+    $view_auth = get_auth($bdd, $categorie_id, "auth_view");
+    $post_auth = get_auth($bdd, $categorie_id, "auth_post");
+    $topic_auth = get_auth($bdd, $categorie_id, "auth_topic");
+    $annonce_auth = get_auth($bdd, $categorie_id, "auth_annonce");
 
     //Toutes les fonctions
 
@@ -25,19 +27,22 @@
     }
 
     function get_begining_message($message){
-        $message = substr($message, 0, 50);
+        $message = substr($message, 0, 150);
         echo $message;
     }
 
-    function get_view_auth($bdd, $categorie_id){
+    function get_categorie_title($bdd, $categorie_id){
+        $req = $bdd->prepare('SELECT forum_title FROM forum_forum WHERE forum_id = :categorie_id');
+        $req->execute(array('categorie_id' => $categorie_id));
+        $data = $req->fetch();
+        $req->closeCursor();
+        return $data['forum_title'];
+    }
+
+    function get_auth($bdd, $categorie_id, $autorisation){
         $req = $bdd->prepare('SELECT * FROM forum_forum WHERE forum_id = :categorie_id');
         $req->execute(array('categorie_id'=>$categorie_id));
         $data = $req->fetch();
-        var_dump('$data = ' . $data);
-        return $data['auth_view'];
-    }
-
-    function read_aut($categorie_id){
-        
+        return $data[$autorisation];
     }
 ?>

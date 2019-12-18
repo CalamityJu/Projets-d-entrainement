@@ -8,13 +8,12 @@
     
 
     //On vérifie que l'utilisateur a les accès
-    var_dump('$user_permission = ' .$user_permission);
-        if($user_permission < $view_auth){
-        echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
-        echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès.</p>";
-        echo "<p>Si vous êtes censé avoir les accès, essayez de vous reconnecter.</p>";
-        echo "<p>Le problème persiste ? Contactez les administrateurs</p></div>";
-        exit();
+    if($user_permission < $view_auth || !isset($categorie_id)){
+    echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
+    echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès ou qui n'existe pas.</p>";
+    echo "<p>Si vous êtes censé pouvoir vous connecter à cette page, essayez de vous reconnecter.</p>";
+    echo "<p>Le problème persiste ? Contactez les administrateurs</p></div>";
+    exit();
     }
 ?>
 
@@ -39,12 +38,12 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="forum.php">Accueil</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Edition</li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo get_categorie_title($bdd, $categorie_id); ?></li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-4 my-auto">
-                    <button class="btn btn-primary float-right">Nouveau sujet</button>
+                    <button class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Nouveau sujet</button>
                 </div>
             </div>
         </div>
