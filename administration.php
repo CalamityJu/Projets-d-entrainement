@@ -1,6 +1,6 @@
 <?php
 
-    include("template/debut.php"); // On démarre la session et on démarre la page. 
+    require_once("template/debut.php"); // On démarre la session et on démarre la page. 
 
     //On vérifie que l'utilisateur a les accès
     if(!isset($slug) || $slug !== "admin"){
@@ -23,7 +23,7 @@
 
     <section id="administration_page">
         <?php
-            include("template/menu.php"); // On insère le menu. 
+            require_once("template/menu.php"); // On insère le menu. 
         ?>
 
         <!--Menu contenant les différentes pages de la page d'administration-->
@@ -40,7 +40,7 @@
         <!-- PAGE MEMBRES-->
 
         <div id="admin_membres_page">
-            <?php include("template/administration_membres.php");?> 
+            <?php require_once("template/administration_membres.php");?> 
         </div> <!--Fin page membre -->
 
 
@@ -48,7 +48,7 @@
         <!-- PAGE FORUM -->
         
         <div id="admin_forum_page">
-            <?php include("template/administration_forum.php");?> 
+            <?php require_once("template/administration_forum.php");?> 
         </div>
     </section>
 

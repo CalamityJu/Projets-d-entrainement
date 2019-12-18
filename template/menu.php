@@ -2,7 +2,7 @@
   <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
 
   
-  <?php include("navbar.php");?> 
+  <?php require_once("navbar.php");?> 
   
 
   <div id="infosProfil">

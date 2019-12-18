@@ -1,11 +1,11 @@
 <?php
-    include("template/debut.php"); // On insère le menu et on démarre la session. 
+    require_once("template/debut.php"); // On insère le menu et on démarre la session. 
 ?>
 
 <div id="forum">
     <div class="menu_forum">
         <?php
-            include("template/menu.php"); // On insère le menu et on démarre la session. 
+            require_once("template/menu.php"); // On insère le menu et on démarre la session. 
         ?>
     </div>
     <header class="container-fluid m-auto p-0">

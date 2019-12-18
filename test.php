@@ -69,7 +69,7 @@
       <a class="navbar-brand ml-md-3" href="index.php">Imperacube</a>
 
       <!-- PAS ENCORE IMPLEMENTE -- IL FAUDRA PENSER A ENLEVER justify-content-between DANS LA NAV AU DESSUS
-      <?php include("navbar.php");?> 
+      <?php require_once("navbar.php");?> 
       -->
 
       <div id="infosProfil">

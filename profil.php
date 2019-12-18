@@ -1,5 +1,5 @@
 <?php
-    include("php/menu.php"); // On insère le menu et on démarre la session. 
+    require_once("php/menu.php"); // On insère le menu et on démarre la session. 
 ?>
 
 <div id="conteneurProfil" class="container-fluid">

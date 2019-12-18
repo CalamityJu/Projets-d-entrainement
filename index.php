@@ -1,9 +1,9 @@
 <?php
-    include("template/debut.php"); // On insère le menu et on démarre la session. 
+    require_once("template/debut.php"); // On insère le menu et on démarre la session. 
 ?>
 <div id="index">
     <?php
-        include("template/menu.php"); // On insère le menu et on démarre la session. 
+        require_once("template/menu.php"); // On insère le menu et on démarre la session. 
     ?>
     <header class="container-fluid px-0">
         <div class="row text-center">
