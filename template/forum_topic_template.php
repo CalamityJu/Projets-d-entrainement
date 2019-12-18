@@ -45,4 +45,8 @@
         $data = $req->fetch();
         return $data[$autorisation];
     }
+
+    function get_member_info($bdd, $topic_id){
+        
+    }
 ?>

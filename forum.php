@@ -39,7 +39,7 @@
                             <div class="catinfo pull-left">
                                 <div class="time text-center">
                                     <i class="far fa-clock"></i>
-                                    14 min
+                                    <?php echo get_last_message_time($bdd, $categorie['forum_id']); ?>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
