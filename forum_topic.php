@@ -5,6 +5,7 @@
     require_once("template/menu.php"); // On insère le menu et on démarre la session. 
     require_once("template/forum_category.php");
     require_once("template/forum_topic_template.php");
+    require_once("function/nombre_de_vue.php");
     
 
     //On vérifie que l'utilisateur a les accès
@@ -43,9 +44,11 @@
                     </nav>
                 </div>
                 <div class="col-4 my-auto">
-                    <a href="">
-                        <button class="btn btn-primary float-right" <?php if($user_permission < $topic_auth) {echo 'disabled';} ?>>Nouveau sujet</button>
-                    </a>
+                    <form action="nouveau_topic.php" method="post">
+                        <input type="hidden" name= "vide">
+                        <input type="hidden" name="categorie_id" value="<?php echo($categorie_id);?>">
+                        <button type=submit" class="btn btn-primary float-right" <?php if($user_permission < $topic_auth) {echo 'disabled';} ?>>Nouveau sujet</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -145,7 +148,7 @@
                             </div>
                             <div class="views text-center">
                                 <i class="fa fa-eye"></i>
-                                <span id="nombreDeVue">1520</span>
+                                <span id="nombreDeVue"><?php echo get_nombre_de_vues($bdd, $topic['topic_id']);?></span>
                             </div>
                             <div class="time text-center">
                                 <i class="far fa-clock"></i>

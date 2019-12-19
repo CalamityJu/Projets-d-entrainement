@@ -7,7 +7,8 @@
     require_once("template/forum_category.php");
     require_once("template/forum_topic_template.php");
     require_once("template/forum_post_template.php");
-    
+    require_once("function/nombre_de_vue.php");
+    compter_nombre_de_vues($bdd, $topic_id);
 
     //On vérifie que l'utilisateur a les accès
     if($user_permission < $view_auth || !isset($categorie_id)){
