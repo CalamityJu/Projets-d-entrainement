@@ -36,7 +36,7 @@
                                 <div class="clearfix"></div>
                             </div>
                              </a>
-                            <div class="catinfo pull-left">
+                            <div class="catinfo pull-left d-none d-md-block">
                                 <div class="time text-center">
                                     <i class="far fa-clock"></i>
                                     <?php echo get_last_message_time($bdd, $categorie['forum_id']); ?>

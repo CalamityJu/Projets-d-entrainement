@@ -43,7 +43,9 @@
                     </nav>
                 </div>
                 <div class="col-4 my-auto">
-                    <button class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Nouveau sujet</button>
+                    <a href="">
+                        <button class="btn btn-primary float-right" <?php if($user_permission < $topic_auth) {echo 'disabled';} ?>>Nouveau sujet</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -126,18 +128,18 @@
                                     <img src="" alt="">
                                 </div>
                             </div>
-                            <div class="posttext pull-left">
+                            <div class="posttext pull-left pl-3">
                                 <h2>
-                                    <a href="#"><?php echo $topic['topic_title'];?></a>
+                                    <a href="forum_post.php?id=<?php echo $categorie_id; ?>&id2=<?php echo $topic['topic_id'];?>"><?php echo $topic['topic_title'];?></a>
                                 </h2>
                                 <p><?php get_begining_message($topic['topic_message']); ?></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div class="postinfo pull-left">
+                        <div class="postinfo pull-left d-none d-md-block">
                             <div class="comments text-center">
                                 <div class="commentbg">
-                                    <span class="numberOfComments">450</span>
+                                    <span class="numberOfComments"><?php echo get_number_messages($bdd, $topic['topic_id']); ?></span>
                                     <div class="mark"></div>
                                 </div>
                             </div>
@@ -147,6 +149,7 @@
                             </div>
                             <div class="time text-center">
                                 <i class="far fa-clock"></i>
+                                <?php echo get_last_post_time($bdd, $topic['topic_id']); ?>
                             </div>
                         </div>
                         <div class="clearfix"></div>

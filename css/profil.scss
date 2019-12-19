@@ -220,7 +220,7 @@ nav {
     }
 }
 
-#forum_topic, #forum{
+#forum_topic, #forum, #forum_post{
     font-family: 'Open Sans Light', sans-serif;
     font-size: 14px;
     color: #989c9e;
@@ -358,6 +358,23 @@ nav {
             margin-bottom: 20px;
             .wrap-ut{
                 width: 85%;
+                &.forum_post{
+                    width: 100%;
+                    .posttext{
+                        padding-left: 30px;
+                        padding-right: 0px;
+                    }
+                    .userinfo{
+                        padding: 20px 15px 15px 0px;
+                        .avatar{
+                            margin-right: 5px;
+                            margin-left: 0px;
+                        }
+                    }
+                }
+                &.topic_post{
+                    width: 100%;
+                }
                 .userinfo{
                     width: 15%;
                     padding: 20px 0px 15px 15px;
@@ -413,6 +430,24 @@ nav {
                         margin-bottom: 10px;
                         a{
                             color: #363838;
+                        }
+                    }
+                    &.message_post{
+                        position: relative;
+                        p{
+                            margin-top: 10px;
+                        }
+                        .date_message{
+                            position: absolute;
+                            top:0;
+                            left: 10px;
+                            font-size: 10px;
+                        }
+                        .signature{
+                            position: absolute;
+                            bottom: 10px;
+                            font-size: 12px;
+                            border-top: 1px solid #f1f1f1;
                         }
                     }
                 }
