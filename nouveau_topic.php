@@ -8,7 +8,7 @@
     require_once("template/forum_post_template.php");
 
     //On vérifie que l'utilisateur a les accès
-    if($user_permission < $view_auth || !isset($categorie_id)){
+    if($user_permission < $view_topic|| !isset($categorie_id)){
     echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
     echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès ou qui n'existe pas.</p>";
     echo "<p>Si vous êtes censé pouvoir vous connecter à cette page, essayez de vous reconnecter.</p>";
@@ -51,21 +51,25 @@
                     <h2>Creation d'un nouveau sujet</h2>
                     <!--Formulaire -->
                     <form action="function/ajout_topic.php" method="post">
-                        <div class="modal-body">
-                            <input id="categorie_id" type="hidden" name="categorie_id" value="<?= $categorie_id;?>">
-                            <div class="form-group">
-                                <label for="topic_title">Titre du sujet</label>
-                                <input type="text" class="form-control" id="title_topic" name="topic_title" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="topic_message">Message</label>
-                                <textarea type="text" class="form-control" id="topic_message" name="topic_message" rows="10" cols="80" required></textarea>
-                                <script> CKEDITOR.replace( 'topic_message' );</script>
-                            </div>
+                        <!--INSERER ALLERT EN CAS D'ERREUR-->
+                        <input id="categorie_id" type="hidden" name="categorie_id" value="<?= $categorie_id;?>">
+                        <input type="hidden" id="user_id" name="user-id" value="<?= $_SESSION['id'];?>">
+                        <div class="form-group">
+                            <label for="pseudo">Pseudo</label>
+                            <input type="text" class="form-control" id="user_id" name="user_id" required>
                         </div>
-                        <div class="modal-footer">
+                        <div class="form-group">
+                            <label for="topic_title">Titre du sujet</label>
+                            <input type="text" class="form-control" id="title_topic" name="topic_title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="topic_message">Message</label>
+                            <textarea type="text" class="form-control" id="topic_message" name="topic_message" rows="10" cols="80" required></textarea>
+                            <script> CKEDITOR.replace( 'topic_message' );</script>
+                        </div>
+                        <div class="d-flex justify-content-center m-3">
                             <a href="forum_topic.php?id=<?php echo $categorie_id; ?>"><button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button></a>
-                            <button type="submit" class="btn btn-primary">Publier</button>
+                            <button type="submit" class="btn btn-primary ml-2">Publier</button>
                         </div>
                     </form>
                 </div>

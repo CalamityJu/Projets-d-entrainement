@@ -1,5 +1,5 @@
 <?php 
-    $posts = get_posts($bdd, $topic_id);
+    $posts = get_posts($bdd, $categorie_id);
 
 function get_posts($bdd, $topic_id){
     $posts = [];
