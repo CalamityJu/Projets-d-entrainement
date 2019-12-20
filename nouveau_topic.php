@@ -1,6 +1,9 @@
 <?php
     //On récupère la catégorie de forum concerné
     $categorie_id = filter_input(INPUT_POST,'categorie_id',FILTER_SANITIZE_NUMBER_INT);
+    if(isset($_GET['id'])){
+        $categorie_id = $_GET['id'];
+    }
     require_once("template/debut.php"); // On insère le menu et on démarre la session. 
     require_once("template/menu.php"); // On insère le menu et on démarre la session. 
     require_once("template/forum_category.php");
@@ -8,7 +11,7 @@
     require_once("template/forum_post_template.php");
 
     //On vérifie que l'utilisateur a les accès
-    if($user_permission < $view_topic|| !isset($categorie_id)){
+    if($user_permission < $topic_auth|| !isset($categorie_id)){
     echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
     echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès ou qui n'existe pas.</p>";
     echo "<p>Si vous êtes censé pouvoir vous connecter à cette page, essayez de vous reconnecter.</p>";
@@ -51,13 +54,11 @@
                     <h2>Creation d'un nouveau sujet</h2>
                     <!--Formulaire -->
                     <form action="function/ajout_topic.php" method="post">
-                        <!--INSERER ALLERT EN CAS D'ERREUR-->
+                        <?php if(isset($_GET['alert'])) : ?>
+                            <span>Il y a eu une erreur lors de l'envoie de l'article</span>
+                        <?php endif; ?>
                         <input id="categorie_id" type="hidden" name="categorie_id" value="<?= $categorie_id;?>">
                         <input type="hidden" id="user_id" name="user-id" value="<?= $_SESSION['id'];?>">
-                        <div class="form-group">
-                            <label for="pseudo">Pseudo</label>
-                            <input type="text" class="form-control" id="user_id" name="user_id" required>
-                        </div>
                         <div class="form-group">
                             <label for="topic_title">Titre du sujet</label>
                             <input type="text" class="form-control" id="title_topic" name="topic_title" required>
