@@ -97,7 +97,7 @@
                                 <a href="#">11</a>
                             </li>
                             <li class="d-none d-lg-inline-block">
-                                <a href="#">12</a>
+                                <p>...</p>
                             </li>
                             <li class="d-none d-xl-inline-block">
                                 <a href="#">1586</a>
@@ -204,7 +204,7 @@
                                         <a href="#">11</a>
                                     </li>
                                     <li class="d-none d-lg-inline-block">
-                                        <a href="#">12</a>
+                                        <a href="#">...</a>
                                     </li>
                                     <li class="d-none d-xl-inline-block">
                                         <a href="#">1586</a>
@@ -298,6 +298,7 @@
                 </div>
             </div>
         </div>
+        <!-- <div id="paginationMenu3" class="container p-0"></div> -->
         <div id="paginationMenu3" class="container p-0 d-none d-lg-block">
             <div class="row">
                 <div class="col-lg-8 col-sm-12 col-md-8 d-flex">
@@ -394,7 +395,9 @@
 </div>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/pagination.js"></script>
 <script src="js/menu.js"></script>
+
 
 <!-- Page d'exemple 
 
