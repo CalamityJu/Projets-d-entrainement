@@ -27,7 +27,11 @@
     $parser->addBBCode("s", '<span class="strike">{param}</span>');
     $parser->addBBCode("sup", '<sup>{param}</sup>');
     $parser->addBBCode("sub", '<sub>{param}</sub>');
+    $parser->addBBCode("center", '<div style ="text-align:center">{param}</div>');
+    $parser->addBBCode("left", '<div style ="text-align:left">{param}</div>');
+    $parser->addBBCode("right", '<div style ="text-align:right">{param}</div>');
     $parser->addBBCode("size", '<span style="font-size:{option}%">{param}</span>', true);
+    $parser->addBBCode("font", '<span style="font-family:{option}">{param}</span>', true);
 ?>
 
 <div id="forum_post">

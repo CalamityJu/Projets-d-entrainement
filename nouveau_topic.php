@@ -96,6 +96,7 @@
         <script>
             $(function() {
                 var optionsWbb = {
+                    buttons: "bold,italic,underline,strike,sup,sub,|,img,link,|,fontcolor,fontsize,fontfamily,|,justifyleft,justifycenter,justifyright,|,quote,spoiler,|,smilebox",
                     lang: "fr"
                 }
                 $("#wysibb").wysibb(optionsWbb);

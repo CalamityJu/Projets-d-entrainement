@@ -311,10 +311,16 @@ wbbdebug=true;
 					}
 				},
 				smilebox: {
+					title: 'Insérer un emoji',
+					subInsert: true,
 					type: 'smilebox',
-					title: CURLANG.smilebox,
 					buttonHTML: '<span class="fonticon ve-tlb-smilebox1">\uE00b</span>'
-				},
+				 },
+				// smilebox: {
+				// 	type: 'smilebox',
+				// 	title: CURLANG.smilebox,
+				// 	buttonHTML: '<span class="fonticon ve-tlb-smilebox1">\uE00b</span>'
+				// },
 				justifyleft: {
 					title: CURLANG.justifyleft,
 					buttonHTML: '<span class="fonticon ve-tlb-textleft1">\uE015</span>',
