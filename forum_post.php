@@ -8,7 +8,10 @@
     require_once("template/forum_topic_template.php");
     require_once("template/forum_post_template.php");
     require_once("function/nombre_de_vue.php");
+    require_once("JBBCode/Parser.php");
+
     compter_nombre_de_vues($bdd, $topic_id);
+    
 
     //On vérifie que l'utilisateur a les accès
     if($user_permission < $view_auth || !isset($categorie_id)){
@@ -18,6 +21,13 @@
     echo "<p>Le problème persiste ? Contactez les administrateurs</p></div>";
     exit();
     }
+
+    $parser = new JBBCode\Parser();
+    $parser->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
+    $parser->addBBCode("s", '<span class="strike">{param}</span>');
+    $parser->addBBCode("sup", '<sup>{param}</sup>');
+    $parser->addBBCode("sub", '<sub>{param}</sub>');
+    $parser->addBBCode("size", '<span style="font-size:{option}%">{param}</span>', true);
 ?>
 
 <div id="forum_post">
@@ -137,7 +147,12 @@
                                         <h2>
                                             <?php echo $topic['topic_title'];?>
                                         </h2>
-                                        <p><?php get_begining_message($topic['topic_message']); ?></p>
+                                        <p>
+                                            <?php 
+                                                $parser->parse($topic['topic_message']); 
+                                                echo $parser->getAsHtml();
+                                            ?>
+                                        </p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -266,7 +281,6 @@
         </div>
     </footer>
 </div>
-<script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/menu.js"></script>
 

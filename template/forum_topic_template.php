@@ -27,7 +27,7 @@
 
     function get_begining_message($message){
         $message = substr($message, 0, 150);
-        echo $message;
+        return $message;
     }
 
     function get_categorie_title($bdd, $categorie_id){

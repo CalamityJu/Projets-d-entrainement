@@ -13,7 +13,7 @@ https://ckeditor.com/docs/ckeditor4/latest/guide/dev_installation.html
     $categorie_id = filter_input(INPUT_POST, 'categorie_id', FILTER_SANITIZE_STRING);
     $user_id = filter_input(INPUT_POST, 'user-id', FILTER_SANITIZE_STRING);
     $topic_title = filter_input(INPUT_POST, 'topic_title', FILTER_SANITIZE_STRING);
-    $topic_message = strip_tags($_POST['topic_message'], '<p><a><strong><img>');
+    $topic_message = filter_input(INPUT_POST, 'topic_message', FILTER_SANITIZE_STRING);
 
     $params= [
         'categorie_id' => $categorie_id,
