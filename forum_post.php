@@ -164,31 +164,33 @@
                             </div>
                         <?php endif;
                     endforeach; 
-                    foreach($posts as $post) : ?>
-                    <div class="post d-flex">
-                        <div class="wrap-ut forum_post pull-right d-flex">
-                            <div class="posttext pull-left message_post">
-                                <p><?php echo $post['post_message']; ?></p>
-                                <div class="signature"><?php echo $post['membre_signature'];?></div>
-                                
-                                <span class="date_message"><?php echo $post['post_time'];?></span>
-                            </div>
-                            <div class="userinfo pull-right d-flex flex-column">
-                                <div class="avatar ml-auto">
-                                    <img src="">
-                                    <div class="status">
+                    foreach($posts as $post) : 
+                        if($post['post_topic_id'] == $topic_id) :?>
+                            <div class="post d-flex">
+                                <div class="wrap-ut forum_post pull-right d-flex">
+                                    <div class="posttext pull-left message_post">
+                                        <p><?php echo $post['post_message']; ?></p>
+                                        <div class="signature"><?php echo $post['membre_signature'];?></div>
+                                        
+                                        <span class="date_message"><?php echo $post['post_time'];?></span>
                                     </div>
+                                    <div class="userinfo pull-right d-flex flex-column">
+                                        <div class="avatar ml-auto">
+                                            <img src="">
+                                            <div class="status">
+                                            </div>
+                                        </div>
+                                        <div class="icons ml-auto text-right">
+                                            <img src="" alt="">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="icons ml-auto text-right">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <?php endforeach; ?>
+                        <?php endif; 
+                    endforeach; ?>
                 </div>
             </div>
         <div id="paginationMenu3" class="container p-0">
