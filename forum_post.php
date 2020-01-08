@@ -65,7 +65,7 @@
                         <input type="hidden" name= "vide">
                         <input type="hidden" name="categorie_id" value="<?php echo($categorie_id);?>">
                         <input type="hidden" name="topic_id" value="<?php echo($topic_id);?>">
-                        <button type=submit" class="btn btn-primary float-right" <?php if($user_permission < $topic_auth) {echo 'disabled';} ?>>Répondre</button>
+                        <button type=submit" class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Répondre</button>
                     </form>
                 </div>
             </div>
@@ -172,16 +172,29 @@
                             <div class="post d-flex">
                                 <div class="wrap-ut forum_post pull-right d-flex">
                                     <div class="posttext pull-left message_post">
-                                        <p><?php echo $post['post_message']; ?></p>
+                                        <p><?php 
+                                                $parsing = $parser->parse($post['post_message']); 
+                                                $data = nl2br($parsing->getAsHtml());
+                                                echo $data;
+                                             ?></p>
                                         <div class="signature"><?php echo $post['membre_signature'];?></div>
                                         
                                         <span class="date_message"><?php echo $post['post_time'];?></span>
                                     </div>
                                     <div class="userinfo pull-right d-flex flex-column">
                                         <div class="avatar ml-auto">
-                                            <img src="">
-                                            <div class="status">
-                                            </div>
+                                            <?php if(isset($post['membre_photo'])): ?>
+                                                <img src="imgMembres/thumbnail-<?php echo $post['membre_photo']; ?>">
+                                                <p id="pseudo_du_membre">
+                                                <?php 
+                                                    echo $post['membre_pseudo']; 
+                                                ?>
+                                                </p>
+                                                <div class="status"></div>
+                                            <?php else:
+                                                    echo "Membre supprimé";
+                                                    
+                                            endif; ?>
                                         </div>
                                         <div class="icons ml-auto text-right">
                                             <img src="" alt="">
