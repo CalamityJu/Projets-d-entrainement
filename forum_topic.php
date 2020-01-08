@@ -403,8 +403,8 @@
         </div>
     </footer>
 </div>
-<!-- <script src="js/bootstrap.js"></script>
-<script src="js/menu.js"></script> -->
+<script src="js/bootstrap.js"></script>
+<script src="js/menu.js"></script>
 
 <!-- Page d'exemple 
 

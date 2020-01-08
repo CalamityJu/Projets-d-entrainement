@@ -61,9 +61,12 @@
                     </nav>
                 </div>
                 <div class="col-4 my-auto">
-                    <a href="">
-                        <button class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Répondre</button>
-                    </a>
+                    <form action="nouveau_post.php" method="post">
+                        <input type="hidden" name= "vide">
+                        <input type="hidden" name="categorie_id" value="<?php echo($categorie_id);?>">
+                        <input type="hidden" name="topic_id" value="<?php echo($topic_id);?>">
+                        <button type=submit" class="btn btn-primary float-right" <?php if($user_permission < $topic_auth) {echo 'disabled';} ?>>Répondre</button>
+                    </form>
                 </div>
             </div>
         </div>
