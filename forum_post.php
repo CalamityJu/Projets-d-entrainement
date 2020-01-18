@@ -8,7 +8,10 @@
     require_once("template/forum_topic_template.php");
     require_once("template/forum_post_template.php");
     require_once("function/nombre_de_vue.php");
+    require_once("JBBCode/Parser.php");
+
     compter_nombre_de_vues($bdd, $topic_id);
+    
 
     //On vérifie que l'utilisateur a les accès
     if($user_permission < $view_auth || !isset($categorie_id)){
@@ -18,6 +21,17 @@
     echo "<p>Le problème persiste ? Contactez les administrateurs</p></div>";
     exit();
     }
+
+    $parser = new JBBCode\Parser();
+    $parser->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
+    $parser->addBBCode("s", '<span class="strike">{param}</span>');
+    $parser->addBBCode("sup", '<sup>{param}</sup>');
+    $parser->addBBCode("sub", '<sub>{param}</sub>');
+    $parser->addBBCode("center", '<div style ="text-align:center">{param}</div>');
+    $parser->addBBCode("left", '<div style ="text-align:left">{param}</div>');
+    $parser->addBBCode("right", '<div style ="text-align:right">{param}</div>');
+    $parser->addBBCode("size", '<span style="font-size:{option}%">{param}</span>', true);
+    $parser->addBBCode("font", '<span style="font-family:{option}">{param}</span>', true);
 ?>
 
 <div id="forum_post">
@@ -47,9 +61,12 @@
                     </nav>
                 </div>
                 <div class="col-4 my-auto">
-                    <a href="">
-                        <button class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Répondre</button>
-                    </a>
+                    <form action="nouveau_post.php" method="post">
+                        <input type="hidden" name= "vide">
+                        <input type="hidden" name="categorie_id" value="<?php echo($categorie_id);?>">
+                        <input type="hidden" name="topic_id" value="<?php echo($topic_id);?>">
+                        <button type=submit" class="btn btn-primary float-right" <?php if($user_permission < $post_auth) {echo 'disabled';} ?>>Répondre</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -137,7 +154,12 @@
                                         <h2>
                                             <?php echo $topic['topic_title'];?>
                                         </h2>
-                                        <p><?php get_begining_message($topic['topic_message']); ?></p>
+                                        <p>
+                                            <?php 
+                                                $parser->parse($topic['topic_message']); 
+                                                echo $parser->getAsHtml();
+                                            ?>
+                                        </p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -145,31 +167,46 @@
                             </div>
                         <?php endif;
                     endforeach; 
-                    foreach($posts as $post) : ?>
-                    <div class="post d-flex">
-                        <div class="wrap-ut forum_post pull-right d-flex">
-                            <div class="posttext pull-left message_post">
-                                <p><?php echo $post['post_message']; ?></p>
-                                <div class="signature"><?php echo $post['membre_signature'];?></div>
-                                
-                                <span class="date_message"><?php echo $post['post_time'];?></span>
-                            </div>
-                            <div class="userinfo pull-right d-flex flex-column">
-                                <div class="avatar ml-auto">
-                                    <img src="">
-                                    <div class="status">
+                    foreach($posts as $post) : 
+                        if($post['post_topic_id'] == $topic_id) :?>
+                            <div class="post d-flex">
+                                <div class="wrap-ut forum_post pull-right d-flex">
+                                    <div class="posttext pull-left message_post">
+                                        <p><?php 
+                                                $parsing = $parser->parse($post['post_message']); 
+                                                $data = nl2br($parsing->getAsHtml());
+                                                echo $data;
+                                             ?></p>
+                                        <div class="signature"><?php echo $post['membre_signature'];?></div>
+                                        
+                                        <span class="date_message"><?php echo $post['post_time'];?></span>
                                     </div>
+                                    <div class="userinfo pull-right d-flex flex-column">
+                                        <div class="avatar ml-auto">
+                                            <?php if(isset($post['membre_photo'])): ?>
+                                                <img src="imgMembres/thumbnail-<?php echo $post['membre_photo']; ?>">
+                                                <p id="pseudo_du_membre">
+                                                <?php 
+                                                    echo $post['membre_pseudo']; 
+                                                ?>
+                                                </p>
+                                                <div class="status"></div>
+                                            <?php else:
+                                                    echo "Membre supprimé";
+                                                    
+                                            endif; ?>
+                                        </div>
+                                        <div class="icons ml-auto text-right">
+                                            <img src="" alt="">
+                                            <img src="" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <div class="icons ml-auto text-right">
-                                    <img src="" alt="">
-                                    <img src="" alt="">
-                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <?php endforeach; ?>
+                        <?php endif; 
+                    endforeach; ?>
                 </div>
             </div>
         <div id="paginationMenu3" class="container p-0">
@@ -266,7 +303,6 @@
         </div>
     </footer>
 </div>
-<script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/menu.js"></script>
 

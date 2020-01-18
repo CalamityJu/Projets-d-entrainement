@@ -6,6 +6,7 @@
     require_once("template/forum_category.php");
     require_once("template/forum_topic_template.php");
     require_once("function/nombre_de_vue.php");
+    require_once("JBBCode/Parser.php");
     
 
     //On vérifie que l'utilisateur a les accès
@@ -16,6 +17,15 @@
     echo "<p>Le problème persiste ? Contactez les administrateurs</p></div>";
     exit();
     }
+
+    $parser = new JBBCode\Parser();
+    $parser->addCodeDefinitionSet(new JBBCode\DefaultCodeDefinitionSet());
+    $parser->addBBCode("s", '<span class="strike">{param}</span>');
+    $parser->addBBCode("sup", '<sup>{param}</sup>');
+    $parser->addBBCode("sub", '<sub>{param}</sub>');
+    $parser->addBBCode("center", '<span style ="text-align:center">{param}</span>');
+    $parser->addBBCode("size", '<span style="font-size:{option}%">{param}</span>', true);
+    $parser->addBBCode("font", '<span style="font-family:{option}">{param}</span>', true);
 ?>
 
 <div id="forum_topic">
@@ -135,7 +145,8 @@
                                 <h2>
                                     <a href="forum_post.php?id=<?php echo $categorie_id; ?>&id2=<?php echo $topic['topic_id'];?>"><?php echo $topic['topic_title'];?></a>
                                 </h2>
-                                <p><?php get_begining_message($topic['topic_message']); ?></p>
+                                <p><?php $parser->parse(get_begining_message($topic['topic_message'])); 
+                                echo $parser->getAsText();?></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -393,7 +404,6 @@
         </div>
     </footer>
 </div>
-<script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/pagination.js"></script>
 <script src="js/menu.js"></script>

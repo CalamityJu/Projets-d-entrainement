@@ -74,6 +74,10 @@
     if(isset($_GET['id'])){
         $categorie_id = $_GET['id'];
     }
+    $topic_id = filter_input(INPUT_POST,'topic_id',FILTER_SANITIZE_NUMBER_INT);
+    if(isset($_GET['id2'])){
+        $topic_id = $_GET['id2'];
+    }
     
 ?>
     <!DOCTYPE html>
@@ -119,7 +123,7 @@
     require_once("template/forum_post_template.php");
 
     //On vérifie que l'utilisateur a les accès
-    if($user_permission < $topic_auth|| !isset($categorie_id)){
+    if($user_permission < $post_auth|| !isset($topic_id)){
     echo "<div class='acces_interdit text-center mt-5'><h1>Accès interdit</h1>";
     echo "<p>Vous avez tentez d'accéder à une page pour laquelle vous n'avez pas les accès ou qui n'existe pas.</p>";
     echo "<p>Si vous êtes censé pouvoir vous connecter à cette page, essayez de vous reconnecter.</p>";
@@ -150,6 +154,7 @@
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="forum.php">Accueil</a></li>
                                     <li class="breadcrumb-item"><a href="forum_topic.php?id=<?php echo $categorie_id; ?>"><?php echo get_categorie_title($bdd, $categorie_id); ?></a></li>
+                                    <li class="breadcrumb-item"><a href="forum_post.php?id=<?php echo $topic_id; ?>"><?php echo get_topic_title($bdd, $topic_id); ?></a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -158,18 +163,15 @@
                 <div class="container p-0">
                     <div class="row">
                         <div class="col-12">
-                            <h2>Creation d'un nouveau sujet</h2>
+                            <h2>Creation d'une nouvelle réponse</h2>
                             <!--Formulaire -->
-                            <form action="function/ajout_topic.php" method="post">
+                            <form action="function/ajout_post.php" method="post">
                                 <?php if(isset($_GET['alert'])) : ?>
-                                    <span>Il y a eu une erreur lors de l'envoie de l'article</span>
+                                    <span>Il y a eu une erreur lors de l'envoie du message</span>
                                 <?php endif; ?>
                                 <input id="categorie_id" type="hidden" name="categorie_id" value="<?= $categorie_id;?>">
+                                <input id="topic_id" type="hidden" name="topic_id" value="<?= $topic_id;?>">
                                 <input type="hidden" id="user_id" name="user-id" value="<?= $_SESSION['id'];?>">
-                                <div class="form-group">
-                                    <label for="topic_title">Titre du sujet</label>
-                                    <input type="text" class="form-control" id="title_topic" name="topic_title" required>
-                                </div>
                                 <div class="form-group">
                                     <label for="wysibb">Message</label>
                                     <textarea type="text" class="form-control" id="wysibb" name="topic_message" rows="10" cols="80"></textarea>

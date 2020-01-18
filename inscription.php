@@ -270,8 +270,6 @@
                 </fieldset>
             </form>
         </main>
-
-        <script src="js/jquery.js"></script>
         <script src="js/inscription.js"></script>
     </body>
 </html>
