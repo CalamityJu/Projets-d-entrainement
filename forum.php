@@ -2,7 +2,16 @@
     require_once("template/debut.php"); // On insère le menu et on démarre la session. 
     require_once("template/menu.php"); // On insère le menu et on démarre la session. 
     require_once("template/forum_category.php"); // On charge les différentes catégories
+    require_once("function/functions.php"); //Getting functions
+
+    //User must be logged in to show the page
+    if(!checkUserLoggedIn()){
+        echo "<p>Vous devez être connecté pour accéder à cette section. <a href='connexion.php'>Se connecter</a> ou <a href='inscription.php'>s'inscrire</a></p>";
+        die();
+    }
 ?>
+
+
 
 <div id="forum">
     <header class="container-fluid m-auto p-0">
@@ -19,7 +28,7 @@
         </div>
     </header>
     <section class="content">
-    <div class="container p-0 mt-5">
+        <div class="container p-0 mt-5">
             <div class="row">
                 <div class="col-lg-8">
                     <?php foreach ($categories as $categorie) : 

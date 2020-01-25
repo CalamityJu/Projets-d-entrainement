@@ -2,12 +2,7 @@
     // On démarre la session
     session_start();
 
-    // On se connecte à la bdd
-    try {
-        $bdd= new PDO('mysql:host=localhost; dbname=espacemembre; charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    } 
+    require_once("function/functions.php");
 
     //On vérifie si l'utilisateur est déjà connecté, si c'est le cas, on attribut son pseudo à la variable $pseudo
     if(isset($_SESSION['pseudo']) && isset($_SESSION['id']) && isset($_SESSION['signature']) && isset($_SESSION['description'])&& isset($_SESSION['avatar']) && isset ($_SESSION['role'])) {
@@ -23,7 +18,7 @@
         $idCookie = htmlspecialchars($_COOKIE["id"]);
         $tokenCookie = htmlspecialchars($_COOKIE["token"]);
         //On récupère les informations de la bdd
-        $req = $bdd->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, membre_email, token_name, roles.name, roles.slug, roles.level FROM membres LEFT JOIN roles ON membres.role_id=roles.id WHERE membre_id = :id');
+        $req = $dbh->prepare('SELECT membre_id, membre_pseudo, membre_description, membre_signature, membre_photo, membre_email, token_name, roles.name, roles.slug, roles.level FROM membres LEFT JOIN roles ON membres.role_id=roles.id WHERE membre_id = :id');
         $req->execute(array(
         'id' => $idCookie
         ));
@@ -50,10 +45,11 @@
     
     } else {
         $pseudo = ""; 
+        
     } 
 
     // On s'assure que le joueur n'est pas banni avant de continuer, sinon on le redirige à la page d'accueil
-    $bannis = $bdd->query('SELECT * FROM membres_bannis');
+    $bannis = $dbh->query('SELECT * FROM membres_bannis');
     while($b = $bannis->fetch()){
         if (isset($pseudo) && $pseudo == $b['banni_pseudo']){
             header('Location:index.php');
@@ -77,7 +73,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Accueil</title>
+        <title>
+            <?php
+            if(!empty($title_page)){
+                echo $title_page;
+            }
+            else{
+                echo 'Imperacube';
+            }
+            ?>
+        </title>
 
         <!-- Load jquery -->
         <script src="js/jquery.js"></script>
@@ -86,8 +91,11 @@
         <!-- Contenu CSS -->
         <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
         <link rel="stylesheet" href="css/all.css">
-        <link rel="stylesheet" href="css/profil.css">
-        <link rel="stylesheet" href="css/forum.css">
+        <!-- <link rel="stylesheet" href="css/profil.css"> -->
+        <?php if(!empty($stylesheet_name)) : ?>
+            <link rel="stylesheet" href="css/<?php echo $stylesheet_name; ?>.css">
+        <?php endif;?>
+        <!-- <link rel="stylesheet" href="css/forum.css"> -->
 
     </head>
     <body>

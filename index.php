@@ -1,4 +1,8 @@
 <?php
+    //Global page variables
+    $title_page = "Accueil";
+    $stylesheet_name="profil";
+
     require_once("template/debut.php"); // On insère le menu et on démarre la session. 
 ?>
 <div id="index">

@@ -3,6 +3,7 @@
   session_start();
 
   $id= $_SESSION['id'];
+  var_dump($id);
 
   // On se connecte à la bdd
   try {
@@ -13,11 +14,11 @@
 
   if(isset($_POST['description'])) {
     $description = htmlspecialchars($_POST['description']);
-    $_SESSION['description'] = $description;
+    $_SESSION ['description'] = $description;
   }
   if(isset($_POST['signature'])) {
     $signature = htmlspecialchars($_POST['signature']);
-    $_SESSION['signature'] = $signature;
+    $_SESSION ['signature'] = $signature;
   }
 
   if(isset($description) || isset($signature)){
