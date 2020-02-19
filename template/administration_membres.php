@@ -84,32 +84,32 @@
 <div class="modal fade" id="modifierGrade" tabindex="-1" role="dialog" aria-labelledby="modifRoleLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="modifRoleLabel">Modifier grade</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form action="function/modification_grade_membre.php" method="post">
-            <div class="modal-body">
-                <div id="avertissementModificationGrade"></div>
-                <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
-                <div class="form-group">
-                    <select class="form-control" id="nouveau_role" name="nouveau_grade">
-                        <?php 
-                        while ($grade = $grades->fetch()) {
-                            if($grade['slug'] !== "ban"){
-                        ?>
-                            <option value="<?=$grade['slug']?>"><?=$grade['name']?></option>
-                        <?php }} ?>
-                    </select>
+            <div class="modal-header">
+                <h5 class="modal-title" id="modifRoleLabel">Modifier grade</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="function/modification_grade_membre.php" method="post">
+                <div class="modal-body">
+                    <div id="avertissementModificationGrade"></div>
+                    <input type="hidden" name="membre_id" value="<?= $membre['membre_id'];?>">
+                    <div class="form-group">
+                        <select class="form-control" id="nouveau_role" name="nouveau_grade">
+                            <?php 
+                            while ($grade = $grades->fetch()) {
+                                if($grade['slug'] !== "ban"){
+                            ?>
+                                <option value="<?=$grade['slug']?>"><?=$grade['name']?></option>
+                            <?php }} ?>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Modifier</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Modifier</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                </div>
+            </form>
         </div>
     </div>
 </div> <!-- Fin modal modifier grade-->
